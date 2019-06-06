@@ -35,6 +35,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServerCompact, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.SqlServerCompact.6.2.0\lib\net45\EntityFramework.SqlServerCompact.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -42,7 +51,13 @@
       <HintPath>..\packages\MaterialDesignThemes.2.5.1\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Compact.4.0.8876.1\lib\net40\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -61,6 +76,66 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Dal\HoaDonDal.cs" />
+    <Compile Include="Dal\KhuVucBanDal.cs" />
+    <Compile Include="Dal\TaiKhoanDal.cs" />
+    <Compile Include="Dal\ThongKeDal.cs" />
+    <Compile Include="Dal\ThucDonDal.cs" />
+    <Compile Include="Models\BAN.cs">
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CTHD.cs">
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CuaHangSQL.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CuaHangSQL.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CuaHangSQL.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CuaHangSQL.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CuaHangSQL.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DANHMUCTHUCDON.cs">
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOADON.cs">
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HoaDonModels.cs" />
+    <Compile Include="Models\KHUVUC.cs">
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KhuVucBanModels.cs" />
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TAIKHOAN.cs">
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaiKhoanModels.cs" />
+    <Compile Include="Models\ThongKeModels.cs" />
+    <Compile Include="Models\THUCDON.cs">
+      <DependentUpon>CuaHangSQL.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ThucDonModels.cs" />
+    <Compile Include="ViewModels\BanViewModels.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\BienDungChung.cs" />
+    <Compile Include="ViewModels\ConvertMau.cs" />
+    <Compile Include="ViewModels\DanhMucViewModels.cs" />
+    <Compile Include="ViewModels\KhuVucBanViewModels.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\TaiKhoanViewModels.cs" />
+    <Compile Include="ViewModels\ThongKeViewModels.cs" />
+    <Compile Include="ViewModels\ThucDonViewModels.cs" />
+    <Compile Include="ViewModels\WindowService.cs" />
     <Compile Include="Views\CuaHang.xaml.cs">
       <DependentUpon>CuaHang.xaml</DependentUpon>
     </Compile>
@@ -204,6 +279,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="Models\CuaHangSQL.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>CuaHangSQL.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Models\CuaHangSQL.edmx.diagram">
+      <DependentUpon>CuaHangSQL.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -213,6 +295,33 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WPF_CafeServer\WpfPageTransitions\WpfPageTransitions.csproj">
+      <Project>{b7a21190-71a1-49e5-abca-11e97074744d}</Project>
+      <Name>WpfPageTransitions</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Models\CuaHangSQL.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CuaHangSQL.edmx</DependentUpon>
+      <LastGenOutput>CuaHangSQL.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\CuaHangSQL.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>CuaHangSQL.edmx</DependentUpon>
+      <LastGenOutput>CuaHangSQL.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    if not exist "$(TargetDir)x86" md "$(TargetDir)x86"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\x86\*.*" "$(TargetDir)x86"
+    if not exist "$(TargetDir)amd64" md "$(TargetDir)amd64"
+    xcopy /s /y "$(SolutionDir)packages\Microsoft.SqlServer.Compact.4.0.8876.1\NativeBinaries\amd64\*.*" "$(TargetDir)amd64"</PostBuildEvent>
+  </PropertyGroup>
 </Project>

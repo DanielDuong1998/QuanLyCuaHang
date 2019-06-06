@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="26eef20770a14415adddc62ffb383371" Name="Diagram1">
+        <EntityTypeShape EntityType="WPF_DatabaseModel.BAN" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPF_DatabaseModel.CTHD" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPF_DatabaseModel.DANHMUCTHUCDON" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPF_DatabaseModel.HOADON" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPF_DatabaseModel.KHUVUC" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPF_DatabaseModel.sysdiagram" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPF_DatabaseModel.TAIKHOAN" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WPF_DatabaseModel.THUCDON" Width="1.5" PointX="5.25" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="WPF_DatabaseModel.FK_BAN_KHUVUC" ManuallyRouted="false" />
+        <AssociationConnector Association="WPF_DatabaseModel.FK_HOADON_BAN" ManuallyRouted="false" />
+        <AssociationConnector Association="WPF_DatabaseModel.FK_CTHD_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="WPF_DatabaseModel.FK_CTHD_THUCDON" ManuallyRouted="false" />
+        <AssociationConnector Association="WPF_DatabaseModel.FK_THUCDON_DANHMUCTHUCDON" ManuallyRouted="false" />
+        <AssociationConnector Association="WPF_DatabaseModel.FK_HOADON_TAIKHOAN" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
