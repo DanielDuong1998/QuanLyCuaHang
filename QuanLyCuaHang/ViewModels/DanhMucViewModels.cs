@@ -1,14 +1,7 @@
 ﻿using QLCuaHang.Views;
-using QuanLyCuaHang.Dal;
 using QuanLyCuaHang.Models;
-using QuanLyCuaHang.Views;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace QuanLyCuaHang.ViewModels
@@ -20,7 +13,7 @@ namespace QuanLyCuaHang.ViewModels
         private string _TENKHUVUCNHAP;
         public ICommand ThongBaoYes { get; set; }
         public ICommand ThongBaoNo { get; set; }
-        KhuVucBanDal khuvucbandal = new KhuVucBanDal();
+       // KhuVucBanDal khuvucbandal = new KhuVucBanDal();
         public ICommand ThemDanhMucKhuVuc { get; set; }
         public ICommand XoaDanhMucKhuVuc { get; set; }
         public List<KhuVucBanModels> DanhMucKhuVuc
@@ -69,7 +62,7 @@ namespace QuanLyCuaHang.ViewModels
         public DanhMucViewModels()
         {
             bool btnYes = false, btnNo = false;
-            DanhMucKhuVuc = khuvucbandal.sp_loadkhuvuc_danhmuc();
+          //  DanhMucKhuVuc = khuvucbandal.sp_loadkhuvuc_danhmuc();
             ThemDanhMucKhuVuc = new RelayCommand<object>((p) => true, (p) =>
             {
                 if (TENKHUVUCNHAP == null || TENKHUVUCNHAP == "")
@@ -79,8 +72,8 @@ namespace QuanLyCuaHang.ViewModels
                 }
                 else
                 {
-                    khuvucbandal.sp_themkhuvuc(TENKHUVUCNHAP);
-                    DanhMucKhuVuc = khuvucbandal.sp_loadkhuvuc_danhmuc();
+                    //khuvucbandal.sp_themkhuvuc(TENKHUVUCNHAP);
+                    //DanhMucKhuVuc = khuvucbandal.sp_loadkhuvuc_danhmuc();
                 }
             });
            
@@ -98,8 +91,8 @@ namespace QuanLyCuaHang.ViewModels
                     tb.ShowDialog();
                     if (tb.Yes == true)
                     {
-                        khuvucbandal.sp_xoakhuvuc(SelectedKhuVucDanhMuc.MAKHUVUC);
-                        DanhMucKhuVuc = khuvucbandal.sp_loadkhuvuc_danhmuc();
+                       // khuvucbandal.sp_xoakhuvuc(SelectedKhuVucDanhMuc.MAKHUVUC);
+                      //  DanhMucKhuVuc = khuvucbandal.sp_loadkhuvuc_danhmuc();
                     }
                 }
                 

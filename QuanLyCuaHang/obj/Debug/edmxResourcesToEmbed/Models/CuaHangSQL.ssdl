@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WPF_DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BAN">
+    <Key>
+      <PropertyRef Name="MABAN" />
+    </Key>
+    <Property Name="MABAN" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENBAN" Type="nvarchar" MaxLength="100" />
+    <Property Name="TRANGTHAI" Type="nvarchar" MaxLength="100" />
+    <Property Name="MAKHUVUC" Type="int" />
+  </EntityType>
+  <EntityType Name="CTHD">
+    <Key>
+      <PropertyRef Name="IDCTHD" />
+    </Key>
+    <Property Name="IDCTHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDHOADON" Type="int" />
+    <Property Name="MATHUCDON" Type="int" />
+    <Property Name="SOLUONG" Type="int" />
+    <Property Name="GIAMGIA" Type="int" />
+  </EntityType>
+  <EntityType Name="DANHMUCTHUCDON">
+    <Key>
+      <PropertyRef Name="MADM" />
+    </Key>
+    <Property Name="MADM" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENDM" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="IDHOADON" />
+    </Key>
+    <Property Name="IDHOADON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NGAYLAP" Type="date" />
+    <Property Name="TONGTIEN" Type="float" />
+    <Property Name="MABAN" Type="int" />
+    <Property Name="TRANGTHAIHOADON" Type="int" />
+    <Property Name="INHOADON" Type="int" />
+    <Property Name="GIOLAP" Type="varchar" MaxLength="50" />
+    <Property Name="IDNHANVIEN" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="KHUVUC">
+    <Key>
+      <PropertyRef Name="MAKHUVUC" />
+    </Key>
+    <Property Name="MAKHUVUC" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENKHUVUC" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TAIKHOAN">
+    <Key>
+      <PropertyRef Name="TENDANGNHAP" />
+    </Key>
+    <Property Name="TENDANGNHAP" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="HOTEN" Type="nvarchar" MaxLength="100" />
+    <Property Name="MATKHAU" Type="varchar" MaxLength="100" />
+    <Property Name="QUYEN" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="THUCDON">
+    <Key>
+      <PropertyRef Name="MATHUCDON" />
+    </Key>
+    <Property Name="MATHUCDON" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TENTHUCDON" Type="nvarchar" MaxLength="100" />
+    <Property Name="DONGIA" Type="float" />
+    <Property Name="GIAMGIA" Type="int" />
+    <Property Name="MADM" Type="int" />
+  </EntityType>
+  <Association Name="FK_BAN_KHUVUC">
+    <End Role="KHUVUC" Type="Self.KHUVUC" Multiplicity="0..1" />
+    <End Role="BAN" Type="Self.BAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHUVUC">
+        <PropertyRef Name="MAKHUVUC" />
+      </Principal>
+      <Dependent Role="BAN">
+        <PropertyRef Name="MAKHUVUC" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTHD_HOADON">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
+    <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="IDHOADON" />
+      </Principal>
+      <Dependent Role="CTHD">
+        <PropertyRef Name="IDHOADON" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CTHD_THUCDON">
+    <End Role="THUCDON" Type="Self.THUCDON" Multiplicity="0..1" />
+    <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THUCDON">
+        <PropertyRef Name="MATHUCDON" />
+      </Principal>
+      <Dependent Role="CTHD">
+        <PropertyRef Name="MATHUCDON" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOADON_BAN">
+    <End Role="BAN" Type="Self.BAN" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BAN">
+        <PropertyRef Name="MABAN" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MABAN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HOADON_TAIKHOAN">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="TENDANGNHAP" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="IDNHANVIEN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_THUCDON_DANHMUCTHUCDON">
+    <End Role="DANHMUCTHUCDON" Type="Self.DANHMUCTHUCDON" Multiplicity="0..1" />
+    <End Role="THUCDON" Type="Self.THUCDON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DANHMUCTHUCDON">
+        <PropertyRef Name="MADM" />
+      </Principal>
+      <Dependent Role="THUCDON">
+        <PropertyRef Name="MADM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WPF_DatabaseModelStoreContainer">
+    <EntitySet Name="BAN" EntityType="Self.BAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CTHD" EntityType="Self.CTHD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DANHMUCTHUCDON" EntityType="Self.DANHMUCTHUCDON" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHUVUC" EntityType="Self.KHUVUC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THUCDON" EntityType="Self.THUCDON" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BAN_KHUVUC" Association="Self.FK_BAN_KHUVUC">
+      <End Role="KHUVUC" EntitySet="KHUVUC" />
+      <End Role="BAN" EntitySet="BAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTHD_HOADON" Association="Self.FK_CTHD_HOADON">
+      <End Role="HOADON" EntitySet="HOADON" />
+      <End Role="CTHD" EntitySet="CTHD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CTHD_THUCDON" Association="Self.FK_CTHD_THUCDON">
+      <End Role="THUCDON" EntitySet="THUCDON" />
+      <End Role="CTHD" EntitySet="CTHD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOADON_BAN" Association="Self.FK_HOADON_BAN">
+      <End Role="BAN" EntitySet="BAN" />
+      <End Role="HOADON" EntitySet="HOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HOADON_TAIKHOAN" Association="Self.FK_HOADON_TAIKHOAN">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+      <End Role="HOADON" EntitySet="HOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_THUCDON_DANHMUCTHUCDON" Association="Self.FK_THUCDON_DANHMUCTHUCDON">
+      <End Role="DANHMUCTHUCDON" EntitySet="DANHMUCTHUCDON" />
+      <End Role="THUCDON" EntitySet="THUCDON" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

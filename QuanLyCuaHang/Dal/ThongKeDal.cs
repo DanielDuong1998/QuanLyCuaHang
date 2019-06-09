@@ -15,8 +15,8 @@ namespace CafeMVVM.Dal
             int parameter = 1;
             string[] name = new string[parameter];
             object[] values = new object[parameter];
-            name[0]= "@ngay";
-            values[0]= ngay;
+            name[0] = "@ngay";
+            values[0] = ngay;
             string json = JsonConvert.SerializeObject(LoadDataParameter("sp_thongkemontheongay", name, values, parameter));
             return JsonConvert.DeserializeObject<List<ThongKeModels>>(json);
         }

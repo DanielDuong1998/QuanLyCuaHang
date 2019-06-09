@@ -1,13 +1,7 @@
-﻿using QuanLyCuaHang.Dal;
-using QuanLyCuaHang.Models;
-using QuanLyCuaHang.Views;
+﻿using QuanLyCuaHang.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace QuanLyCuaHang.ViewModels
@@ -34,7 +28,7 @@ namespace QuanLyCuaHang.ViewModels
         public ICommand rdTuchonComand_dt { get; set; }
         private string _SOLUONGHOADON;
         private string _TONGTIENHOADON;
-        ThongKeDal tkdal = new ThongKeDal();
+        //ThongKeDal tkdal = new ThongKeDal();
 
         public List<ThongKeModels> DanhSachThongKeMon
         {
@@ -104,9 +98,9 @@ namespace QuanLyCuaHang.ViewModels
                 _SelectedDoanhThuMacDinh = value;
                 if (_SelectedDoanhThuMacDinh != null)
                 {
-                    ChiTietHoaDon = tkdal.sp_loaddanhsachthucdoncuaban_thongke(SelectedDoanhThuMacDinh.IDHOADON);
-                    PageChiTietHoaDon chitiet = new PageChiTietHoaDon { DataContext = this };
-                    chitiet.ShowDialog();
+                 //   ChiTietHoaDon = tkdal.sp_loaddanhsachthucdoncuaban_thongke(SelectedDoanhThuMacDinh.IDHOADON);
+                   // PageChiTietHoaDon chitiet = new PageChiTietHoaDon { DataContext = this };
+                   // chitiet.ShowDialog();
                 }
                 OnPropertyChanged("SelectedDoanhThuMacDinh");
             }
@@ -249,7 +243,7 @@ namespace QuanLyCuaHang.ViewModels
         {
             bool ngaymon = false, thangmon = false, tuchonmon = false;
             bool ngaydt = false, thangdt = false, tuchondt = false;
-            DanhSachMacDinh = tkdal.sp_doanhthutheongay(DateTime.Now.Day);
+           // DanhSachMacDinh = tkdal.sp_doanhthutheongay(DateTime.Now.Day);
             tinhhoadon();
             rdNgayCommand = new RelayCommand<object>((p) => true, (p) => { ngaymon = true; thangmon = false;tuchonmon = false; });
             rdThangComand = new RelayCommand<object>((p) => true, (p) => { ngaymon = false; thangmon = true; tuchonmon = false; });
@@ -263,12 +257,12 @@ namespace QuanLyCuaHang.ViewModels
                 {
                     if (CbNgay_Mon == null || CbNgay_Mon == "")
                     {
-                        ThongBao tb = new ThongBao("Chưa chọn ngày.", "CanhBao");
-                        tb.ShowDialog();
+                     //   ThongBao tb = new ThongBao("Chưa chọn ngày.", "CanhBao");
+                     //   tb.ShowDialog();
                     }
                     else
                     {
-                        DanhSachThongKeMon = tkdal.sp_thongkemontheongay(int.Parse(CbNgay_Mon.ToString()));
+                      //  DanhSachThongKeMon = tkdal.sp_thongkemontheongay(int.Parse(CbNgay_Mon.ToString()));
                         tinhmon();
                     }
                 }
@@ -276,12 +270,12 @@ namespace QuanLyCuaHang.ViewModels
                 {
                     if (CbThang_Mon == null || CbThang_Mon == "")
                     {
-                        ThongBao tb = new ThongBao("Chưa chọn tháng.", "CanhBao");
-                        tb.ShowDialog();
+                       // ThongBao tb = new ThongBao("Chưa chọn tháng.", "CanhBao");
+                      //  tb.ShowDialog();
                     }
                     else
                     {
-                        DanhSachThongKeMon = tkdal.sp_thongkemontheothang(int.Parse(CbThang_Mon.ToString()));
+                      //  DanhSachThongKeMon = tkdal.sp_thongkemontheothang(int.Parse(CbThang_Mon.ToString()));
                         tinhmon();
                     }
                 }
@@ -289,20 +283,20 @@ namespace QuanLyCuaHang.ViewModels
                 {
                     if (Date_tuchon_Mon == null || Date_tuchon_Mon.ToString() == "")
                     {
-                        ThongBao tb = new ThongBao("Chưa chọn ngày cụ thể.", "CanhBao");
-                        tb.ShowDialog();
+                     //   ThongBao tb = new ThongBao("Chưa chọn ngày cụ thể.", "CanhBao");
+                      //  tb.ShowDialog();
                     }
                     else
                     {
-                        DanhSachThongKeMon = tkdal.sp_thongkemontheonam(DateTime.Parse(Date_tuchon_Mon.ToString()).ToString("yyyy-MM-dd"));
-                        tinhmon();
+                     //   DanhSachThongKeMon = tkdal.sp_thongkemontheonam(DateTime.Parse(Date_tuchon_Mon.ToString()).ToString("yyyy-MM-dd"));
+                     //   tinhmon();
                     }
                 }
                 else
                 {
-                    ThongBao tb = new ThongBao("Chưa chọn thời gian cần thống kê.!", "CanhBao");
-                    tb.ShowDialog();
-                    tinhmon();
+                   // ThongBao tb = new ThongBao("Chưa chọn thời gian cần thống kê.!", "CanhBao");
+                   // tb.ShowDialog();
+                   // tinhmon();
                 }
                 
             });
@@ -312,46 +306,46 @@ namespace QuanLyCuaHang.ViewModels
                 {
                     if (CbNgay_DoanhThu == null || CbNgay_DoanhThu == "")
                     {
-                        ThongBao tb = new ThongBao("Chưa chọn ngày.", "CanhBao");
-                        tb.ShowDialog();
+                       // ThongBao tb = new ThongBao("Chưa chọn ngày.", "CanhBao");
+                       // tb.ShowDialog();
                     }
                     else
                     {
-                        DanhSachMacDinh =tkdal.sp_doanhthutheongay(int.Parse(CbNgay_DoanhThu));
-                        tinhhoadon();
+                       // DanhSachMacDinh =tkdal.sp_doanhthutheongay(int.Parse(CbNgay_DoanhThu));
+                       // tinhhoadon();
                     }
                 }
                 else if (thangdt == true)
                 {
                     if (CbThang_DoanhThu == null || CbThang_DoanhThu == "")
                     {
-                        ThongBao tb = new ThongBao("Chưa chọn tháng.", "CanhBao");
-                        tb.ShowDialog();
+                        //ThongBao tb = new ThongBao("Chưa chọn tháng.", "CanhBao");
+                       // tb.ShowDialog();
                     }
                     else
                     {
-                        DanhSachMacDinh =tkdal.sp_danhthutheothang(int.Parse(CbThang_DoanhThu));
-                        tinhhoadon();
+                      //  DanhSachMacDinh =tkdal.sp_danhthutheothang(int.Parse(CbThang_DoanhThu));
+                       // tinhhoadon();
                     }
                 }
                 else if (tuchondt == true)
                 {
                     if (Date_tuchonDoanhThu == null || Date_tuchonDoanhThu.ToString() == "")
                     {
-                        ThongBao tb = new ThongBao("Chưa chọn ngày cụ thể.", "CanhBao");
-                        tb.ShowDialog();
+                        //ThongBao tb = new ThongBao("Chưa chọn ngày cụ thể.", "CanhBao");
+                       // tb.ShowDialog();
                     }
                     else
                     {
-                        DanhSachMacDinh =tkdal.sp_doanhthutheonam(DateTime.Parse(Date_tuchonDoanhThu.ToString()).ToString("yyyy-MM-dd"));
-                        tinhhoadon();
+                       // DanhSachMacDinh =tkdal.sp_doanhthutheonam(DateTime.Parse(Date_tuchonDoanhThu.ToString()).ToString("yyyy-MM-dd"));
+                       // tinhhoadon();
                     }
                 }
                 else
                 {
-                    ThongBao tb = new ThongBao("Chưa chọn thời gian cần thống kê.!", "CanhBao");
-                    tb.ShowDialog();
-                    tinhhoadon();
+                    //ThongBao tb = new ThongBao("Chưa chọn thời gian cần thống kê.!", "CanhBao");
+                   // tb.ShowDialog();
+                   // tinhhoadon();
                 }
 
             });           

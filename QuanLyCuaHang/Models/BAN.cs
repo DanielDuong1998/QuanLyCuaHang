@@ -19,7 +19,13 @@ namespace QuanLyCuaHang.Models
         {
             this.HOADONs = new HashSet<HOADON>();
         }
-    
+
+        public BAN(string tenban, int makhuvuc)
+        {
+            TENBAN = tenban;
+            MAKHUVUC = makhuvuc;
+        }
+
         public int MABAN { get; set; }
         public string TENBAN { get; set; }
         public string TRANGTHAI { get; set; }

@@ -24,7 +24,7 @@ namespace QuanLyCuaHang.ViewModels
         public ICommand XoaBanComand { get; set; }
         public ICommand SuaBanComand { get; set; }
         public ICommand SuaBanFormComand { get; set; }
-        KhuVucBanDal khuvucdal = new KhuVucBanDal();
+        //KhuVucBanDal khuvucdal = new KhuVucBanDal();
 
         public List<KhuVucBanModels> BanDanhMuc
         {
@@ -79,7 +79,7 @@ namespace QuanLyCuaHang.ViewModels
                 _SelectedKhuVuc = value;
                 if (_SelectedKhuVuc != null)
                 {
-                    BanDanhMuc = khuvucdal.sp_bandanhmuc(_SelectedKhuVuc.MAKHUVUC);
+                   // BanDanhMuc = khuvucdal.sp_bandanhmuc(_SelectedKhuVuc.MAKHUVUC);
                 }
             }
         }
@@ -113,7 +113,7 @@ namespace QuanLyCuaHang.ViewModels
         
         public BanViewModels()
         {           
-            KhuVuc = khuvucdal.sp_loadkhuvuc();
+           // KhuVuc = khuvucdal.sp_loadkhuvuc();
             ThemBanComand = new RelayCommand<object>((p) => true, (p) =>
             {
                 if (SelectedKhuVuc == null)
@@ -133,8 +133,8 @@ namespace QuanLyCuaHang.ViewModels
                     {
                         soluongbanhienco = BanDanhMuc.Count;
                         soluongbanhienco = soluongbanhienco + 1;
-                        khuvucdal.sp_thembandanhmuc("Bàn " + soluongbanhienco, SelectedKhuVuc.MAKHUVUC);
-                        BanDanhMuc = khuvucdal.sp_bandanhmuc(SelectedKhuVuc.MAKHUVUC);
+                       // khuvucdal.sp_thembandanhmuc("Bàn " + soluongbanhienco, SelectedKhuVuc.MAKHUVUC);
+                       // BanDanhMuc = khuvucdal.sp_bandanhmuc(SelectedKhuVuc.MAKHUVUC);
                     }
                 }
             });
@@ -152,14 +152,14 @@ namespace QuanLyCuaHang.ViewModels
                     tb.ShowDialog();
                     if (tb.Yes == true)
                     {
-                        khuvucdal.sp_xoabandanhmuc(SelectedBan.MABAN);
-                        BanDanhMuc = khuvucdal.sp_bandanhmuc(SelectedKhuVuc.MAKHUVUC);
+                       // khuvucdal.sp_xoabandanhmuc(SelectedBan.MABAN);
+                       // BanDanhMuc = khuvucdal.sp_bandanhmuc(SelectedKhuVuc.MAKHUVUC);
                     }                 
                 }
             });
             SuaBanComand = new RelayCommand<object>((p) => true, (p) =>
             {
-                WindowService.ShowFormSuaBan(false,this,(Window)p);             
+               // WindowService.ShowFormSuaBan(false,this,(Window)p);             
             });
 
             SuaBanFormComand = new RelayCommand<object>((p) => true, (p) =>
@@ -176,9 +176,9 @@ namespace QuanLyCuaHang.ViewModels
                       }
                       else
                       {
-                          khuvucdal.sp_suaban(SelectedBan.MABAN, TENBAN);
-                          BanDanhMuc = khuvucdal.sp_bandanhmuc(SelectedKhuVuc.MAKHUVUC);
-                          WindowService.ShowFormSuaBan(true, this, (Window)p);
+                         // khuvucdal.sp_suaban(SelectedBan.MABAN, TENBAN);
+                          //BanDanhMuc = khuvucdal.sp_bandanhmuc(SelectedKhuVuc.MAKHUVUC);
+                        //  WindowService.ShowFormSuaBan(true, this, (Window)p);
                       }
                   });
         }

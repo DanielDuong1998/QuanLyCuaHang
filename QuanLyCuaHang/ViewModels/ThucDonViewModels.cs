@@ -1,13 +1,6 @@
-﻿using QuanLyCuaHang.Dal;
-using QuanLyCuaHang.Models;
-using QuanLyCuaHang.Views;
-using System;
+﻿using QuanLyCuaHang.Models;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 
 namespace QuanLyCuaHang.ViewModels
@@ -26,7 +19,7 @@ namespace QuanLyCuaHang.ViewModels
         public ICommand ThemMonComand { get; set; }
         public ICommand XoaMonTdComand { get; set; }
         public ICommand SuaMonComand { get; set; }
-        ThucDonDal thucdondal = new ThucDonDal();
+      //  ThucDonDal thucdondal = new ThucDonDal();
         public List<ThucDonModels> DanhMucThucDon
         {
             get
@@ -53,7 +46,7 @@ namespace QuanLyCuaHang.ViewModels
                 _SelectedItemDanhMucTd = value;
                 if (_SelectedItemDanhMucTd != null)
                 {
-                    DanhSachMon = thucdondal.sp_loadthucdon(SelectedItemDanhMucTd.MADM);
+                //    DanhSachMon = thucdondal.sp_loadthucdon(SelectedItemDanhMucTd.MADM);
                 }
             }
         }
@@ -128,94 +121,94 @@ namespace QuanLyCuaHang.ViewModels
 
         public ThucDonViewModels()
         {
-            DanhMucThucDon = thucdondal.sp_danhmucloadthucdon();
+          //  DanhMucThucDon = thucdondal.sp_danhmucloadthucdon();
             ThemDanhMucTdComand = new RelayCommand<object>((p) => true, (p) =>
             {
                 if (TenDanhMuc == "" ||TenDanhMuc==null)
                 {
-                    ThongBao tb = new ThongBao("Chưa nhập tên danh mục","CanhBao");
-                    tb.ShowDialog();                    
+                  //  ThongBao tb = new ThongBao("Chưa nhập tên danh mục","CanhBao");
+                   // tb.ShowDialog();                    
                 }
                 else
                 {
-                    thucdondal.sp_themdanhmucthucdon(TenDanhMuc);
-                    DanhMucThucDon = thucdondal.sp_danhmucloadthucdon();
+                   // thucdondal.sp_themdanhmucthucdon(TenDanhMuc);
+                  //  DanhMucThucDon = thucdondal.sp_danhmucloadthucdon();
                 }
             });
             XoaDanhMucTdComand = new RelayCommand<object>((p) => true, (p) =>
             {
                 if (SelectedItemDanhMucTd == null)
                 {
-                    ThongBao tb = new ThongBao("Chọn danh mục trên để xóa", "CanhBao");
-                    tb.ShowDialog();                   
+                  //  ThongBao tb = new ThongBao("Chọn danh mục trên để xóa", "CanhBao");
+                  //  tb.ShowDialog();                   
                 }
-                else
-                {
-                    ThongBao tb = new ThongBao { DataContext = this };
-                    tb.EventYesNo("Xóa danh mục: " + SelectedItemDanhMucTd.TENDM, "CauHoi");
-                    tb.ShowDialog();
-                    if (tb.Yes == true)
-                    {
-                        thucdondal.sp_xoadanhmucthucdon(SelectedItemDanhMucTd.MADM);
-                        DanhMucThucDon = thucdondal.sp_danhmucloadthucdon();
-                    }
-                }
+                //else
+                //{
+                //    ThongBao tb = new ThongBao { DataContext = this };
+                //    tb.EventYesNo("Xóa danh mục: " + SelectedItemDanhMucTd.TENDM, "CauHoi");
+                //    tb.ShowDialog();
+                //    if (tb.Yes == true)
+                //    {
+                //        thucdondal.sp_xoadanhmucthucdon(SelectedItemDanhMucTd.MADM);
+                //        DanhMucThucDon = thucdondal.sp_danhmucloadthucdon();
+                //    }
+                //}
             });
             ThemMonComand = new RelayCommand<object>((p) => true, (p) =>
             {
-                if (SelectedItemDanhMucTd == null)
-                {
-                    ThongBao tb = new ThongBao("Chọn danh mục để hiển thị món", "CanhBao");
-                    tb.ShowDialog();       
-                }
-                else if (Mon == "" || Mon == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa nhập món cần thêm", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else if (DonGia.ToString() == "" || DonGia == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa nhập đơn giá", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    thucdondal.sp_themthucdon(Mon, double.Parse(DonGia.ToString()), SelectedItemDanhMucTd.MADM);
-                    DanhSachMon = thucdondal.sp_loadthucdon(SelectedItemDanhMucTd.MADM);
-                }
+                //if (SelectedItemDanhMucTd == null)
+                //{
+                //    ThongBao tb = new ThongBao("Chọn danh mục để hiển thị món", "CanhBao");
+                //    tb.ShowDialog();       
+                //}
+                //else if (Mon == "" || Mon == null)
+                //{
+                //    ThongBao tb = new ThongBao("Chưa nhập món cần thêm", "CanhBao");
+                //    tb.ShowDialog();
+                //}
+                //else if (DonGia.ToString() == "" || DonGia == null)
+                //{
+                //    ThongBao tb = new ThongBao("Chưa nhập đơn giá", "CanhBao");
+                //    tb.ShowDialog();
+                //}
+                //else
+                //{
+                //    thucdondal.sp_themthucdon(Mon, double.Parse(DonGia.ToString()), SelectedItemDanhMucTd.MADM);
+                //    DanhSachMon = thucdondal.sp_loadthucdon(SelectedItemDanhMucTd.MADM);
+                //}
             });
-            XoaMonTdComand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                if (SelectedItemMon == null)
-                {
-                    ThongBao tb = new ThongBao("Chọn món phía trên để xóa", "CanhBao");
-                    tb.ShowDialog();                    
-                }
-                else
-                {
-                    ThongBao tb = new ThongBao { DataContext = this };
-                    tb.EventYesNo("Xóa món: "+SelectedItemMon.TENTHUCDON, "CauHoi");
-                    tb.ShowDialog();
-                    if (tb.Yes == true)
-                    {
-                        thucdondal.sp_xoathucdon(SelectedItemMon.MATHUCDON);
-                        DanhSachMon = thucdondal.sp_loadthucdon(SelectedItemDanhMucTd.MADM);
-                    }
-                }
-            });
-            SuaMonComand = new RelayCommand<object>((p) => true, (p) => 
-            {
-                if (SelectedItemMon == null)
-                {
-                    ThongBao tb = new ThongBao("Chọn món để sửa.", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    thucdondal.sp_suagiathucdon(SelectedItemMon.MATHUCDON, double.Parse(DonGia.ToString()));
-                    DanhSachMon = thucdondal.sp_loadthucdon(SelectedItemDanhMucTd.MADM);
-                }
-            });
+            //XoaMonTdComand = new RelayCommand<object>((p) => true, (p) =>
+            //{
+            //    if (SelectedItemMon == null)
+            //    {
+            //        ThongBao tb = new ThongBao("Chọn món phía trên để xóa", "CanhBao");
+            //        tb.ShowDialog();                    
+            //    }
+            //    else
+            //    {
+            //        ThongBao tb = new ThongBao { DataContext = this };
+            //        tb.EventYesNo("Xóa món: "+SelectedItemMon.TENTHUCDON, "CauHoi");
+            //        tb.ShowDialog();
+            //        if (tb.Yes == true)
+            //        {
+            //            thucdondal.sp_xoathucdon(SelectedItemMon.MATHUCDON);
+            //            DanhSachMon = thucdondal.sp_loadthucdon(SelectedItemDanhMucTd.MADM);
+            //        }
+            //    }
+            //});
+            //SuaMonComand = new RelayCommand<object>((p) => true, (p) => 
+            //{
+            //    if (SelectedItemMon == null)
+            //    {
+            //        ThongBao tb = new ThongBao("Chọn món để sửa.", "CanhBao");
+            //        tb.ShowDialog();
+            //    }
+            //    else
+            //    {
+            //        thucdondal.sp_suagiathucdon(SelectedItemMon.MATHUCDON, double.Parse(DonGia.ToString()));
+            //        DanhSachMon = thucdondal.sp_loadthucdon(SelectedItemDanhMucTd.MADM);
+            //    }
+            //});
         }
         #region PropertyChange
         public event PropertyChangedEventHandler PropertyChanged;

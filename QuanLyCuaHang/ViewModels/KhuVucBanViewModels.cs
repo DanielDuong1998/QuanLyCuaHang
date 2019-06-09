@@ -1,8 +1,4 @@
-﻿using QuanLyCuaHang.Dal;
-using QuanLyCuaHang.Models;
-using QuanLyCuaHang.Reports;
-using QuanLyCuaHang.Views;
-using DevExpress.XtraReports.UI;
+﻿using QuanLyCuaHang.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,9 +11,9 @@ namespace QuanLyCuaHang.ViewModels
 {
     public class KhuVucBanViewModels:INotifyPropertyChanged
     {
-        KhuVucBanDal KhuVucDal = new KhuVucBanDal();
-        ThucDonDal ThucDonDal = new ThucDonDal();
-        HoaDonDal HoaDonDal = new HoaDonDal(); 
+        //KhuVucBanDal KhuVucDal = new KhuVucBanDal();
+        //ThucDonDal ThucDonDal = new ThucDonDal();
+        //HoaDonDal HoaDonDal = new HoaDonDal(); 
         private KhuVucBanModels _SelectedItem;
         private ThucDonModels _SelectedItemDMThucDon;
         private ThucDonModels _SelectedItemDMThucDonGiamGia;
@@ -70,7 +66,7 @@ namespace QuanLyCuaHang.ViewModels
                 _SelectedItem = value;
                 if (_SelectedItem != null)
                 {
-                    BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(_SelectedItem.MAKHUVUC);
+                 //   BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(_SelectedItem.MAKHUVUC);
                     makhuvuc = _SelectedItem.MAKHUVUC;
                     DanhSachThucDonBan = null;
                 }
@@ -130,7 +126,7 @@ namespace QuanLyCuaHang.ViewModels
                 _SelectedItemDMThucDon = value;
                 if (_SelectedItemDMThucDon != null)
                 {
-                    ThucDon = ThucDonDal.sp_loadthucdon(_SelectedItemDMThucDon.MADM);
+                    //ThucDon = ThucDonDal.sp_loadthucdon(_SelectedItemDMThucDon.MADM);
                 }
                 OnPropertyChanged("SelectedItemDMThucDon");
             }
@@ -168,26 +164,26 @@ namespace QuanLyCuaHang.ViewModels
                     MABANKHISELECT = SelectedItemBan.MABAN;
                     TENBANKHISELECT = SelectedItemBan.TENBAN;
                     EnableGridDanhmuc = true;
-                    List<HoaDonModels> listhoadon;
-                    listhoadon = HoaDonDal.sp_layidhoadontheo_khuvucban(SelectedItemBan.MABAN, SelectedItem.MAKHUVUC);
-                    if (listhoadon.Count > 0)
-                    {
-                        IDHOADON = listhoadon[0].IDHOADON;
-                        DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(SelectedItemBan.MABAN, IDHOADON);
-                         Tong = 0;
-                        for (int i = 0; i < DanhSachThucDonBan.Count; i++)
-                        {
-                            Tong = Tong + (DanhSachThucDonBan[i].SOLUONG * double.Parse(DanhSachThucDonBan[i].DONGIA.ToString()));
-                        }
-                        TongTien = "Tổng " + SelectedItemBan.TENBAN + " | " + SelectedItem.TENKHUVUC + " : " + double.Parse(Tong.ToString()).ToString("N0") + " Vnđ";
-                        TieuDeHoaDon = "Hóa đơn " + SelectedItemBan.TENBAN + " | " + SelectedItem.TENKHUVUC;
-                    }
-                    else
-                    {
-                        TieuDeHoaDon = "";
-                        DanhSachThucDonBan = null;
-                        TongTien = "";
-                    }
+                    //List<HoaDonModels> listhoadon;
+                    ////listhoadon = HoaDonDal.sp_layidhoadontheo_khuvucban(SelectedItemBan.MABAN, SelectedItem.MAKHUVUC);
+                    //if (listhoadon.Count > 0)
+                    //{
+                    //    IDHOADON = listhoadon[0].IDHOADON;
+                    //    DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(SelectedItemBan.MABAN, IDHOADON);
+                    //     Tong = 0;
+                    //    for (int i = 0; i < DanhSachThucDonBan.Count; i++)
+                    //    {
+                    //        Tong = Tong + (DanhSachThucDonBan[i].SOLUONG * double.Parse(DanhSachThucDonBan[i].DONGIA.ToString()));
+                    //    }
+                    //    TongTien = "Tổng " + SelectedItemBan.TENBAN + " | " + SelectedItem.TENKHUVUC + " : " + double.Parse(Tong.ToString()).ToString("N0") + " Vnđ";
+                    //    TieuDeHoaDon = "Hóa đơn " + SelectedItemBan.TENBAN + " | " + SelectedItem.TENKHUVUC;
+                    //}
+                    //else
+                    //{
+                    //    TieuDeHoaDon = "";
+                    //    DanhSachThucDonBan = null;
+                    //    TongTien = "";
+                    //}
                 }
             }
         }
@@ -237,72 +233,72 @@ namespace QuanLyCuaHang.ViewModels
                     TieuDeHoaDon = "Hóa đơn " + TENBANKHISELECT + " | " + SelectedItem.TENKHUVUC;
                     if (SelectedItemBan == null)
                     {
-                        ThongBao tb = new ThongBao("Chưa chọn bàn", "CanhBao");
-                        tb.ShowDialog();
+                     //   ThongBao tb = new ThongBao("Chưa chọn bàn", "CanhBao");
+                        //tb.ShowDialog();
                     }
                     else
                     {
                         List<HoaDonModels> listhoadon;
-                        listhoadon = HoaDonDal.sp_layidhoadontheo_khuvucban(MABANKHISELECT, SelectedItem.MAKHUVUC);
-                        if (listhoadon.Count > 0)
-                        {
-                            IDHOADON = listhoadon[0].IDHOADON;
-                            HoaDonDal.sp_themcthdban(IDHOADON, ChonThucDonBan.MATHUCDON, 1, ChonThucDonBan.GIAMGIA);
-                            DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
+                      //  listhoadon = HoaDonDal.sp_layidhoadontheo_khuvucban(MABANKHISELECT, SelectedItem.MAKHUVUC);
+                        //if (listhoadon.Count > 0)
+                        //{
+                        //    IDHOADON = listhoadon[0].IDHOADON;
+                        //    HoaDonDal.sp_themcthdban(IDHOADON, ChonThucDonBan.MATHUCDON, 1, ChonThucDonBan.GIAMGIA);
+                        //    DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
 
-                            if (DanhSachThucDonBan.Count > 0)
-                            {
-                                double Tong = 0;
-                                for (int i = 0; i < DanhSachThucDonBan.Count; i++)
-                                {
-                                    Tong = Tong + (DanhSachThucDonBan[i].SOLUONG * double.Parse(DanhSachThucDonBan[i].DONGIA.ToString()));
-                                }
-                                TongTien = "Tổng tiền hóa đơn " + TENBANKHISELECT + " | " + SelectedItem.TENKHUVUC + " : " + double.Parse(Tong.ToString()).ToString("N0") + " Vnđ";
+                        //    if (DanhSachThucDonBan.Count > 0)
+                        //    {
+                        //        double Tong = 0;
+                        //        for (int i = 0; i < DanhSachThucDonBan.Count; i++)
+                        //        {
+                        //            Tong = Tong + (DanhSachThucDonBan[i].SOLUONG * double.Parse(DanhSachThucDonBan[i].DONGIA.ToString()));
+                        //        }
+                        //        TongTien = "Tổng tiền hóa đơn " + TENBANKHISELECT + " | " + SelectedItem.TENKHUVUC + " : " + double.Parse(Tong.ToString()).ToString("N0") + " Vnđ";
 
-                            }
-                            else
-                            {
-                                TongTien = "";
-                            }
-                            ChonThucDonBan = null;
-                            OnPropertyChanged("ChonThucDonBan");
-                        }
+                        //    }
+                        //    else
+                        //    {
+                        //        TongTien = "";
+                        //    }
+                        //    ChonThucDonBan = null;
+                        //    OnPropertyChanged("ChonThucDonBan");
+                        //}
 
-                        else
-                        {
-                            if (SelectedItemBan == null)
-                            {
-                                ThongBao tb = new ThongBao("Chưa chọn bàn", "CanhBao");
-                                tb.ShowDialog();                                
-                            }
-                            else
-                            {
-                                HoaDonDal.sp_themhoadon(DateTime.Now.ToString("yyyy-MM-dd"), SelectedItemBan.MABAN);
-                                List<HoaDonModels> listhoadon1;
-                                listhoadon1 = HoaDonDal.sp_layidhoadontheo_khuvucban(MABANKHISELECT, SelectedItem.MAKHUVUC);
-                                if (listhoadon1.Count > 0)
-                                {
-                                    IDHOADON = listhoadon1[0].IDHOADON;
-                                    HoaDonDal.sp_themcthdban(IDHOADON, ChonThucDonBan.MATHUCDON, 1, ChonThucDonBan.GIAMGIA);
-                                    DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
+                        //else
+                        //{
+                        //    if (SelectedItemBan == null)
+                        //    {
+                        //        ThongBao tb = new ThongBao("Chưa chọn bàn", "CanhBao");
+                        //        tb.ShowDialog();                                
+                        //    }
+                        //    else
+                        //    {
+                        //        HoaDonDal.sp_themhoadon(DateTime.Now.ToString("yyyy-MM-dd"), SelectedItemBan.MABAN);
+                        //        List<HoaDonModels> listhoadon1;
+                        //        listhoadon1 = HoaDonDal.sp_layidhoadontheo_khuvucban(MABANKHISELECT, SelectedItem.MAKHUVUC);
+                        //        if (listhoadon1.Count > 0)
+                        //        {
+                        //            IDHOADON = listhoadon1[0].IDHOADON;
+                        //            HoaDonDal.sp_themcthdban(IDHOADON, ChonThucDonBan.MATHUCDON, 1, ChonThucDonBan.GIAMGIA);
+                        //            DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
 
-                                    for (int i = 0; i < DanhSachThucDonBan.Count; i++)
-                                    {
-                                        Tong = Tong + (DanhSachThucDonBan[i].SOLUONG * double.Parse(DanhSachThucDonBan[i].DONGIA.ToString()));
-                                    }
-                                    TongTien = "Tổng tiền hóa đơn " + TENBANKHISELECT + " | " + SelectedItem.TENKHUVUC + " : " + double.Parse(Tong.ToString()).ToString("N0") + " Vnđ";
+                        //            for (int i = 0; i < DanhSachThucDonBan.Count; i++)
+                        //            {
+                        //                Tong = Tong + (DanhSachThucDonBan[i].SOLUONG * double.Parse(DanhSachThucDonBan[i].DONGIA.ToString()));
+                        //            }
+                        //            TongTien = "Tổng tiền hóa đơn " + TENBANKHISELECT + " | " + SelectedItem.TENKHUVUC + " : " + double.Parse(Tong.ToString()).ToString("N0") + " Vnđ";
 
-                                }
-                                else
-                                {
-                                    TongTien = "";
-                                }
-                                ChonThucDonBan = null;
-                                OnPropertyChanged("ChonThucDonBan");
-                            }
-                        }
-                        BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(SelectedItem.MAKHUVUC); // load tại trạng thái bàn    
-                        SelectedIndexOfBan = index;
+                        //        }
+                        //        else
+                        //        {
+                        //            TongTien = "";
+                        //        }
+                        //        ChonThucDonBan = null;
+                        //        OnPropertyChanged("ChonThucDonBan");
+                        //    }
+                        //}
+                        //BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(SelectedItem.MAKHUVUC); // load tại trạng thái bàn    
+                        //SelectedIndexOfBan = index;
                     }
                 }
             }
@@ -457,7 +453,7 @@ namespace QuanLyCuaHang.ViewModels
                 _SelectedBanMuonGop = value;
                 if (_SelectedBanMuonGop != null)
                 {
-                    BanDcGop = KhuVucDal.sp_loadbancangop(SelectedItem.MAKHUVUC, _SelectedBanMuonGop.MABAN);
+                   // BanDcGop = KhuVucDal.sp_loadbancangop(SelectedItem.MAKHUVUC, _SelectedBanMuonGop.MABAN);
                 }
             }
         }
@@ -501,7 +497,7 @@ namespace QuanLyCuaHang.ViewModels
                 _SelectedItemDMThucDonGiamGia = value;
                 if (_SelectedItemDMThucDonGiamGia != null)
                 {
-                    ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
+                    //ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
                 }
             }
         }
@@ -579,35 +575,35 @@ namespace QuanLyCuaHang.ViewModels
         {
             if (MABANKHISELECT == 0 || SelectedItem == null)
             {
-                ThongBao tb = new ThongBao("Hóa đơn trống", "CanhBao");
-                tb.ShowDialog();               
+               // ThongBao tb = new ThongBao("Hóa đơn trống", "CanhBao");
+               // tb.ShowDialog();               
             }
-            else
-            {
-                List<HoaDonModels> listhoadon;
-                int makhuvuc = SelectedItem.MAKHUVUC;
-                listhoadon = HoaDonDal.sp_layidhoadontheo_khuvucban(MABANKHISELECT, makhuvuc);
-                if (listhoadon.Count > 0)
-                {
-                    HoaDonDal.sp_thanhtoanban(MABANKHISELECT, listhoadon[0].IDHOADON, Tong,BienDungChung.idnhanvien);
-                    //ThongBao tb = new ThongBao("Thanh toán hóa đơn " + TENBANKHISELECT + " | " + SelectedItem.TENKHUVUC + " thành công.", "ThanhCong");
-                    //tb.ShowDialog();         
-                    //Show hóa đơn, sau này thì chi in trực tiếp  
-                    HoaDonRpt hdrpt = new HoaDonRpt();
-                    hdrpt.RequestParameters = false;
-                    hdrpt.DataSource = HoaDonDal.sp_loaddanhsachthucdoncuaban_rpt(MABANKHISELECT, listhoadon[0].IDHOADON, DateTime.Now.ToShortTimeString().ToString().Substring(0,5));
-                    hdrpt.DataMember = null;
-                    ReportPrintTool toolrpt = new ReportPrintTool(hdrpt);
-                    toolrpt.AutoShowParametersPanel = false;                    
-                    toolrpt.ShowRibbonPreview();
-                    //load lại bàn và hóa đơn
-                    BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);                                    
-                    EnableGridDanhmuc = false;                  
-                    TongTien = "";
-                    TieuDeHoaDon = "";
-                    DanhSachThucDonBan = null;                   
-                }
-            }
+            //else
+            //{
+            //    List<HoaDonModels> listhoadon;
+            //    int makhuvuc = SelectedItem.MAKHUVUC;
+            //    listhoadon = HoaDonDal.sp_layidhoadontheo_khuvucban(MABANKHISELECT, makhuvuc);
+            //    if (listhoadon.Count > 0)
+            //    {
+            //        HoaDonDal.sp_thanhtoanban(MABANKHISELECT, listhoadon[0].IDHOADON, Tong,BienDungChung.idnhanvien);
+            //        //ThongBao tb = new ThongBao("Thanh toán hóa đơn " + TENBANKHISELECT + " | " + SelectedItem.TENKHUVUC + " thành công.", "ThanhCong");
+            //        //tb.ShowDialog();         
+            //        //Show hóa đơn, sau này thì chi in trực tiếp  
+            //        HoaDonRpt hdrpt = new HoaDonRpt();
+            //        hdrpt.RequestParameters = false;
+            //        hdrpt.DataSource = HoaDonDal.sp_loaddanhsachthucdoncuaban_rpt(MABANKHISELECT, listhoadon[0].IDHOADON, DateTime.Now.ToShortTimeString().ToString().Substring(0,5));
+            //        hdrpt.DataMember = null;
+            //        ReportPrintTool toolrpt = new ReportPrintTool(hdrpt);
+            //        toolrpt.AutoShowParametersPanel = false;                    
+            //        toolrpt.ShowRibbonPreview();
+            //        //load lại bàn và hóa đơn
+            //        BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);                                    
+            //        EnableGridDanhmuc = false;                  
+            //        TongTien = "";
+            //        TieuDeHoaDon = "";
+            //        DanhSachThucDonBan = null;                   
+            //    }
+            //}
         }
         
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
@@ -616,10 +612,10 @@ namespace QuanLyCuaHang.ViewModels
         {
             SelectedIndexOfBan = -1;
             PhanTramGiamGia = 0;
-               KhuVuc = KhuVucDal.sp_loadkhuvuc();
+            KhuVuc = KhuVucDal.sp_loadkhuvuc();
             DanhMucThucDon = ThucDonDal.sp_danhmucloadthucdon();
             EnableGridDanhmuc = false;
-            ThanhToanComand = new RelayCommand<object>((p) => true, (p) => 
+            ThanhToanComand = new RelayCommand<object>((p) => true, (p) =>
             {
                 thanhtoanhoadon();
             });
@@ -633,15 +629,15 @@ namespace QuanLyCuaHang.ViewModels
                 else if (SelectMon == null)
                 {
                     ThongBao tb = new ThongBao("Chọn món trên danh sách để xóa.", "CanhBao");
-                    tb.ShowDialog();                   
+                    tb.ShowDialog();
                 }
                 else
-                {                      
+                {
                     KhuVucDal.sp_xoachitiethoadon(IDHOADON, SelectMon.MATHUCDON, SelectMon.GIAMGIA);
                     DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
                     if (DanhSachThucDonBan.Count == 0)
                     {
-                        KhuVucDal.sp_xoahoadonkhihetmon(IDHOADON,SelectedItemBan.MABAN);
+                        KhuVucDal.sp_xoahoadonkhihetmon(IDHOADON, SelectedItemBan.MABAN);
                         int makhuvuc = SelectedItem.MAKHUVUC;
                         BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);
                         DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
@@ -649,7 +645,7 @@ namespace QuanLyCuaHang.ViewModels
                     }
                 }
             });
-            ChuyenBanCommand = new RelayCommand<object>((p) => true, (p) => 
+            ChuyenBanCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 if (SelectedItem == null)
                 {
@@ -668,12 +664,12 @@ namespace QuanLyCuaHang.ViewModels
                 if (SelectedBanCoNguoi == null)
                 {
                     ThongBao tb = new ThongBao("Chưa chọn bàn cần chuyển", "CanhBao");
-                    tb.ShowDialog();                    
+                    tb.ShowDialog();
                 }
                 else if (SelectedBanTrong == null)
                 {
                     ThongBao tb = new ThongBao("Chưa chọn bàn trống", "CanhBao");
-                    tb.ShowDialog();                   
+                    tb.ShowDialog();
                 }
                 else
                 {
@@ -687,7 +683,7 @@ namespace QuanLyCuaHang.ViewModels
                 if (SelectedItem == null)
                 {
                     ThongBao tb = new ThongBao("Chưa chọn khu vực", "CanhBao");
-                    tb.ShowDialog();                    
+                    tb.ShowDialog();
                 }
                 else
                 {
@@ -700,17 +696,17 @@ namespace QuanLyCuaHang.ViewModels
                 if (SelectedBanMuonGop == null)
                 {
                     ThongBao tb = new ThongBao("Chưa chọn bạn gộp", "CanhBao");
-                    tb.ShowDialog();                   
+                    tb.ShowDialog();
                 }
                 else if (SelectedItem == null)
                 {
                     ThongBao tb = new ThongBao("Chưa chọn khu vực", "CanhBao");
-                    tb.ShowDialog();                   
+                    tb.ShowDialog();
                 }
                 else if (SelectedBanDcGop == null)
                 {
                     ThongBao tb = new ThongBao("Chưa chọn bạn muốn gộp", "CanhBao");
-                    tb.ShowDialog();                   
+                    tb.ShowDialog();
                 }
                 else
                 {
@@ -727,35 +723,35 @@ namespace QuanLyCuaHang.ViewModels
                     }
                 }
             });
-            ThemGiamGia = new RelayCommand<object>((p) => true, ((p) => 
-            {  
-                    if (ChonThucDonBanGiamGia == null)
-                    {
-                        ThongBao tb = new ThongBao("Chưa chọn món cần giảm", "CanhBao");
-                        tb.ShowDialog();                        
-                    }
-                    else if (PhanTramGiamGia < 0)
-                    {
-                        ThongBao tb = new ThongBao("Giảm giá không được âm", "CanhBao");
-                        tb.ShowDialog();                        
-                    }
-                    else if (PhanTramGiamGia > 100)
-                    {
-                        ThongBao tb = new ThongBao("Giảm giá không lớn hơn 100%", "CanhBao");
-                        tb.ShowDialog();                        
-                    }
-                    else
-                    {
-                        ThucDonDal.sp_themgiamgia(ChonThucDonBanGiamGia.MATHUCDON, PhanTramGiamGia);
-                        ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
-                    }                            
+            ThemGiamGia = new RelayCommand<object>((p) => true, ((p) =>
+            {
+                if (ChonThucDonBanGiamGia == null)
+                {
+                    ThongBao tb = new ThongBao("Chưa chọn món cần giảm", "CanhBao");
+                    tb.ShowDialog();
+                }
+                else if (PhanTramGiamGia < 0)
+                {
+                    ThongBao tb = new ThongBao("Giảm giá không được âm", "CanhBao");
+                    tb.ShowDialog();
+                }
+                else if (PhanTramGiamGia > 100)
+                {
+                    ThongBao tb = new ThongBao("Giảm giá không lớn hơn 100%", "CanhBao");
+                    tb.ShowDialog();
+                }
+                else
+                {
+                    ThucDonDal.sp_themgiamgia(ChonThucDonBanGiamGia.MATHUCDON, PhanTramGiamGia);
+                    ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
+                }
             }));
             GoGiamGia = new RelayCommand<object>((p) => true, ((p) =>
             {
                 if (ChonThucDonBanGiamGia == null)
                 {
                     ThongBao tb = new ThongBao("Chưa chọn món gỡ bỏ giảm giá", "CanhBao");
-                    tb.ShowDialog();                   
+                    tb.ShowDialog();
                 }
                 else
                 {
@@ -763,7 +759,7 @@ namespace QuanLyCuaHang.ViewModels
                     ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
                 }
             }));
-            TimBanTrongCommand = new RelayCommand<object>((p) => true, (p) => 
+            TimBanTrongCommand = new RelayCommand<object>((p) => true, (p) =>
             {
                 DanhSachBanTrong = KhuVucDal.sp_danhsachkhuvuccobantrong();
                 KhuVucBanTrong khuvucbantrong = new KhuVucBanTrong { DataContext = this };
@@ -778,55 +774,55 @@ namespace QuanLyCuaHang.ViewModels
         }
         private void TimerTrangThai()
         {
-            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+          //  dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             dispatcherTimer.Interval = new TimeSpan(0, 0, 2);
             dispatcherTimer.Start();
         }
         private void TimerInHoaDon()
         {           
             dispatcherTimer1.Interval = new TimeSpan(0, 0, 2);
-            dispatcherTimer1.Tick += new EventHandler(HamInHoaDonTuClient);
+          //  dispatcherTimer1.Tick += new EventHandler(HamInHoaDonTuClient);
             dispatcherTimer1.Start();
         }
 
-        private void HamInHoaDonTuClient(object sender, EventArgs e)
-        {
-            DanhSachLoadHoaDonDeIn = HoaDonDal.sp_loadhoadoncanin();
-            if (DanhSachLoadHoaDonDeIn.Count > 0)
-            {
-                for (int i = 0; i < DanhSachLoadHoaDonDeIn.Count; i++)
-                {
-                    if (DanhSachLoadHoaDonDeIn[i].INHOADON == 1)
-                    {
-                        HoaDonRpt hdrpt = new HoaDonRpt();
-                        hdrpt.RequestParameters = false;
-                        hdrpt.DataSource = HoaDonDal.sp_loaddanhsachthucdoncuaban_rpt(DanhSachLoadHoaDonDeIn[i].MABAN, DanhSachLoadHoaDonDeIn[i].IDHOADON, DateTime.Now.ToShortTimeString().ToString().Substring(0, 5));
-                        hdrpt.DataMember = null;
-                        ReportPrintTool toolrpt = new ReportPrintTool(hdrpt);
-                        toolrpt.AutoShowParametersPanel = false;
-                        toolrpt.ShowRibbonPreview();
-                        HoaDonDal.sp_capnhathoadondain(DanhSachLoadHoaDonDeIn[i].IDHOADON);
-                        break;
-                    }
-                }
-            }
-        }
+        //private void HamInHoaDonTuClient(object sender, EventArgs e)
+        //{
+        //    DanhSachLoadHoaDonDeIn = HoaDonDal.sp_loadhoadoncanin();
+        //    if (DanhSachLoadHoaDonDeIn.Count > 0)
+        //    {
+        //        for (int i = 0; i < DanhSachLoadHoaDonDeIn.Count; i++)
+        //        {
+        //            if (DanhSachLoadHoaDonDeIn[i].INHOADON == 1)
+        //            {
+        //                HoaDonRpt hdrpt = new HoaDonRpt();
+        //                hdrpt.RequestParameters = false;
+        //                hdrpt.DataSource = HoaDonDal.sp_loaddanhsachthucdoncuaban_rpt(DanhSachLoadHoaDonDeIn[i].MABAN, DanhSachLoadHoaDonDeIn[i].IDHOADON, DateTime.Now.ToShortTimeString().ToString().Substring(0, 5));
+        //                hdrpt.DataMember = null;
+        //                ReportPrintTool toolrpt = new ReportPrintTool(hdrpt);
+        //                toolrpt.AutoShowParametersPanel = false;
+        //                toolrpt.ShowRibbonPreview();
+        //                HoaDonDal.sp_capnhathoadondain(DanhSachLoadHoaDonDeIn[i].IDHOADON);
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            if (SelectedItem != null)
-            {
-                BanSoSanh = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);
-                for (int i = 0; i < BanKhuVuc.Count; i++)
-                {
-                    if (BanKhuVuc[i].TRANGTHAI != BanSoSanh[i].TRANGTHAI)
-                    {
-                        BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);
-                        break;
-                    }
-                }
-            }
-        }
+        //private void dispatcherTimer_Tick(object sender, EventArgs e)
+        //{
+        //    if (SelectedItem != null)
+        //    {
+        //        BanSoSanh = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);
+        //        for (int i = 0; i < BanKhuVuc.Count; i++)
+        //        {
+        //            if (BanKhuVuc[i].TRANGTHAI != BanSoSanh[i].TRANGTHAI)
+        //            {
+        //                BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);
+        //                break;
+        //            }
+        //        }
+        //    }
+        //}
         #region PropertyChange
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)

@@ -296,12 +296,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\WPF_CafeServer\WpfPageTransitions\WpfPageTransitions.csproj">
-      <Project>{b7a21190-71a1-49e5-abca-11e97074744d}</Project>
-      <Name>WpfPageTransitions</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Models\CuaHangSQL.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CuaHangSQL.edmx</DependentUpon>
@@ -315,6 +309,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WpfPageTransitions\WpfPageTransitions.csproj">
+      <Project>{b7a21190-71a1-49e5-abca-11e97074744d}</Project>
+      <Name>WpfPageTransitions</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

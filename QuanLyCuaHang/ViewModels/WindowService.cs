@@ -1,4 +1,5 @@
-﻿using QuanLyCuaHang.Views;
+﻿using QLCuaHang.Views;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +9,11 @@ using System.Windows;
 
 namespace QuanLyCuaHang.ViewModels
 {
-    public class WindowService: Window
+    public class WindowService : Window
     {
-        public static void ShowFormSuaBan(bool TatForm,BanViewModels BanVMD,Window wd)
+        public static void ShowFormSuaBan(bool TatForm, BanViewModels BanVMD, Window wd)
         {
-            PageSuaBan suatenban = new PageSuaBan { DataContext = BanVMD };
+              PageSuaBan suatenban = new PageSuaBan { DataContext = BanVMD };
             Window wn = (Window)suatenban.Parent;
             if (TatForm == false)
             {
@@ -24,9 +25,9 @@ namespace QuanLyCuaHang.ViewModels
                 wd.Close();
             }
         }
-        public static void ShowFormChuyenBan(bool TatForm, KhuVucBanViewModels KhuVucVMD,Window wd)
-        {           
-            PageChuyenBan chuyenban = new PageChuyenBan { DataContext = KhuVucVMD };           
+        public static void ShowFormChuyenBan(bool TatForm, KhuVucBanViewModels KhuVucVMD, Window wd)
+        {
+              PageChuyenBan chuyenban = new PageChuyenBan { DataContext = KhuVucVMD };           
             if (TatForm == false)
             {
                 chuyenban.ShowDialog();
@@ -35,11 +36,11 @@ namespace QuanLyCuaHang.ViewModels
             {
                 chuyenban.Close();
                 wd.Close();
-            }           
+            }
         }
         public static void ShowFormGopBan(bool TatForm, KhuVucBanViewModels KhuVucVMD, Window wd)
         {
-            PageGopBan gopban = new PageGopBan { DataContext = KhuVucVMD };          
+            PageGopBan gopban = new PageGopBan { DataContext = KhuVucVMD };
             if (TatForm == false)
             {
                 gopban.ShowDialog();

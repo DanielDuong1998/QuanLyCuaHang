@@ -15,6 +15,14 @@ namespace QuanLyCuaHang.Models
         private int _SLBAN;
         private int _IDHOADON;
 
+      
+
+        public KhuVucBanModels(int? mAKHUVUC, string tENKHUVUC, int sLBAN)
+        {
+            TENKHUVUC = tENKHUVUC;
+            SLBAN = sLBAN;
+        }
+
         public int MAKHUVUC
         {
             get

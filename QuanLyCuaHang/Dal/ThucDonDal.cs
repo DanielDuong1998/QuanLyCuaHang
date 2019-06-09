@@ -1,4 +1,4 @@
-﻿using CafeMVVM.Models;
+﻿using QuanLyCuaHang.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CafeMVVM.Dal
+namespace QuanLyCuaHang.Dal
 {
-    public class ThucDonDal:XuLySqlServer
+    public class ThucDonDal : XuLySqlServer
     {
         public List<ThucDonModels> sp_danhmucloadthucdon()
         {
@@ -41,20 +41,20 @@ namespace CafeMVVM.Dal
             object[] values = new object[parameter];
             name[0] = "@iddanhmuc";
             values[0] = madanhmuc;
-            return Execute("sp_xoadanhmucthucdon",name,values,parameter);
+            return Execute("sp_xoadanhmucthucdon", name, values, parameter);
         }
         public bool sp_themthucdon(string tenthucdon, double dongia, int madanhmuc)
         {
             int parameter = 3;
             string[] name = new string[parameter];
             object[] values = new object[parameter];
-            name[0]= "@tenthucdon";
-            name[1]= "@dongia";
-            name[2]= "@iddm";
-            values[0]=tenthucdon;
-            values[1]=dongia;
-            values[2]=madanhmuc;
-            return Execute("sp_themthucdon",name,values,parameter);
+            name[0] = "@tenthucdon";
+            name[1] = "@dongia";
+            name[2] = "@iddm";
+            values[0] = tenthucdon;
+            values[1] = dongia;
+            values[2] = madanhmuc;
+            return Execute("sp_themthucdon", name, values, parameter);
         }
         public bool sp_xoathucdon(int mathucdon)
         {
@@ -70,19 +70,19 @@ namespace CafeMVVM.Dal
             int parameter = 2;
             string[] name = new string[parameter];
             object[] values = new object[parameter];
-            name[0]= "@mathucdon";
-            name[1]= "@giamgia";
-            values[0]=mathucdon;
-            values[1]=giamgia;
-            return Execute("sp_themgiamgia", name,values,parameter);
+            name[0] = "@mathucdon";
+            name[1] = "@giamgia";
+            values[0] = mathucdon;
+            values[1] = giamgia;
+            return Execute("sp_themgiamgia", name, values, parameter);
         }
         public bool sp_xoagiamgia(int mathucdon)
         {
             int parameter = 1;
             string[] name = new string[parameter];
             object[] values = new object[parameter];
-            name[0] = "@mathucdon";           
-            values[0] = mathucdon;          
+            name[0] = "@mathucdon";
+            values[0] = mathucdon;
             return Execute("sp_xoagiamgia", name, values, parameter);
         }
         public bool sp_suagiathucdon(int mathucdon, double dongia)
@@ -90,10 +90,10 @@ namespace CafeMVVM.Dal
             int parameter = 2;
             string[] name = new string[parameter];
             object[] values = new object[parameter];
-            name[0]= "@mathucdon";
-            name[1]= "@dongia";
-            values[0]=mathucdon;
-            values[1]=dongia;
+            name[0] = "@mathucdon";
+            name[1] = "@dongia";
+            values[0] = mathucdon;
+            values[1] = dongia;
             return Execute("sp_suagiathucdon", name, values, parameter);
         }
     }

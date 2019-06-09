@@ -23,7 +23,7 @@ namespace QuanLyCuaHang.Dal
             //string json = JsonConvert.SerializeObject(LoadDataParameter("sp_loaddanhsachthucdoncuaban", name, values, parameter));
             //return JsonConvert.DeserializeObject<List<HoaDonModels>>(json);
             List<HOADON> list = new List<HOADON>();
-            list = db.HOADONs.Where(x=>x.MABAN==maban && x.IDHOADON==mahoadon).ToList();
+            list = db.HOADONs.Where(x => x.MABAN == maban && x.IDHOADON == mahoadon).ToList();
             return list;
         }
         public List<HOADON> sp_layidhoadontheo_khuvucban(int maban, int makhuvuc)
@@ -40,14 +40,14 @@ namespace QuanLyCuaHang.Dal
             return JsonConvert.DeserializeObject<List<HoaDonModels>>(json);*/
             var query = from hoadon in db.HOADONs
                         join ban in db.BANs on hoadon.MABAN equals ban.MABAN
-                        where hoadon.MABAN==maban && ban.MAKHUVUC==makhuvuc
+                        where hoadon.MABAN == maban && ban.MAKHUVUC == makhuvuc
                         select hoadon;
-            List <HOADON> list = new List<HOADON>();
+            List<HOADON> list = new List<HOADON>();
             //list = db.HOADONs.Where(x => x.MABAN == maban).Join();
             list = query.ToList();
             return list;
         }
-        public bool sp_themhoadon( int maban)
+        public bool sp_themhoadon(int maban)
         {
             /* int parameter = 2;
              string[] name = new string[parameter];
@@ -63,7 +63,7 @@ namespace QuanLyCuaHang.Dal
             db.SaveChanges();
             return true;
         }
-        public bool sp_themcthdban(int idhoadon, int mathucdon, int soluong,int giamgia)
+        public bool sp_themcthdban(int idhoadon, int mathucdon, int soluong, int giamgia)
         {
             /* int parameter = 4;
              string[] name = new string[parameter];
@@ -82,7 +82,7 @@ namespace QuanLyCuaHang.Dal
             db.SaveChanges();
             return true;
         }
-        public bool sp_thanhtoanban(int maban, int mahoadon, double tongtien,string idnhanvien)
+        public bool sp_thanhtoanban(int maban, int mahoadon, double tongtien, string idnhanvien)
         {
             /*int parameter = 4;
             string[] name = new string[parameter];
