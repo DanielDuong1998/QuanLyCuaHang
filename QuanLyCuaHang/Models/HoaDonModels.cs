@@ -26,6 +26,12 @@ namespace QuanLyCuaHang.Models
         private string _GIORA;
         private double _TTIEN;
         private int _INHOADON;
+        private double _GiaMD;
+
+        public HoaDonModels(int i)
+        {
+            _IDHOADON = i;
+        }
 
         public HoaDonModels(int? iDHOADON, int? MATHUCDON, int? SOLUONG, int? GIAMGIA)
         {
@@ -33,6 +39,17 @@ namespace QuanLyCuaHang.Models
             _MATHUCDON = (int)MATHUCDON;
             _SOLUONG = (int)SOLUONG;
             _GIAMGIA = (int)GIAMGIA;
+        }
+
+        public HoaDonModels(string tENTHUCDON, double dONGIA, int? sOLUONG, int mATHUCDON, int? gIAMGIA, double? giaMD, double? tien)
+        {
+            _TENTHUCDON = tENTHUCDON;
+            _DONGIA = dONGIA;
+            _MATHUCDON = mATHUCDON;
+            _SOLUONG = (int)sOLUONG;
+            _GIAMGIA = (int)gIAMGIA;
+            _GiaMD = (double)giaMD;
+            _TTIEN = (double)tien;
         }
 
         public int IDHOADON

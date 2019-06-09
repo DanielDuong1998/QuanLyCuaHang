@@ -18,6 +18,33 @@ namespace QuanLyCuaHang.Models
         private object _TONGTIEN;
         private object _NGAYLAP;
         private string _GIOLAP;
+        private int _MATHUCDON;
+
+        public ThongKeModels(string TENTHUCDON, int? SOLUONG, double? tongTien)
+        {
+            _TENTHUCDON = TENTHUCDON;
+            _SOLUONG = (int)SOLUONG;
+            _TONGTIEN = (double)tongTien;
+        }
+
+        public ThongKeModels(string tENTHUCDON, double? dONGIA, int? sOLUONG, int mATHUCDON, int? gIAMGIA)
+        {
+            _TENTHUCDON = tENTHUCDON;
+            _DONGIA = dONGIA;
+            _SOLUONG = (int)sOLUONG;
+            _MATHUCDON = mATHUCDON;
+            _GIAMGIA = (int)gIAMGIA;
+        }
+
+        public ThongKeModels(string tENKHUVUC, string tENBAN, double? tONGTIEN, DateTime? nGAYLAP, string gIOLAP, int iDHOADON)
+        {
+            _TENKHUVUC = tENKHUVUC;
+            _TENBAN = tENBAN;
+            _TONGTIEN = tONGTIEN;
+            _NGAYLAP = nGAYLAP;
+            _GIOLAP = gIOLAP;
+            _IDHOADON = iDHOADON;
+        }
 
         public string TENTHUCDON
         {

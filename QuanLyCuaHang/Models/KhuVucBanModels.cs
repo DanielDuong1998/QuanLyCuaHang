@@ -14,8 +14,12 @@ namespace QuanLyCuaHang.Models
         private string _TRANGTHAI;
         private int _SLBAN;
         private int _IDHOADON;
-        
-
+      
+        public  KhuVucBanModels(int MABAN, string TENBAN,Boolean a)
+        {
+            _MABAN = MABAN;
+            _TENBAN = TENBAN;
+        }
         public KhuVucBanModels(BAN b, int iDHOADON)
         {
             _MABAN = b.MABAN;
@@ -24,7 +28,7 @@ namespace QuanLyCuaHang.Models
             _IDHOADON = iDHOADON;
         }
 
-        public KhuVucBanModels(int mAKHUVUC, string tENKHUVUC)
+        public  KhuVucBanModels(int mAKHUVUC, string tENKHUVUC)
         {
             _MAKHUVUC = mAKHUVUC;
             _TENKHUVUC = tENKHUVUC;
@@ -42,6 +46,15 @@ namespace QuanLyCuaHang.Models
             _TENBAN = tENBAN;
             _TENKHUVUC = tENKHUVUC;
             _TRANGTHAI = tRANGTHAI;
+        }
+
+        public KhuVucBanModels(int MABAN, string TENBAN, string TRANGTHAI, int? MAKHUVUC)
+        {
+            _MABAN = MABAN;
+            _TENBAN = TENBAN;
+
+            _TRANGTHAI = TRANGTHAI;
+            _MAKHUVUC = (int)MAKHUVUC;
         }
 
         public int MAKHUVUC

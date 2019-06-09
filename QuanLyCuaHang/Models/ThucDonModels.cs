@@ -15,6 +15,21 @@ namespace QuanLyCuaHang.Models
         private object _DONGIA;
         private int _GIAMGIA;
 
+        public ThucDonModels(int mADM, string tENDM)
+        {
+            _MADM = mADM;
+            _TENDM = tENDM;
+        }
+
+        public ThucDonModels(int MATHUCDON, string TENTHUCDON, double? DONGIA, int? GIAMGIA) 
+        {
+            _DONGIA = DONGIA;
+            _TENTHUCDON = TENTHUCDON;
+            _DONGIA = (double)DONGIA;
+            _GIAMGIA = (int)GIAMGIA;
+
+        }
+
         public int MADM
         {
             get

@@ -22,18 +22,7 @@ namespace CafeMVVM.Dal
         }
         public bool sp_themtaikhoan(TaiKhoanModels tk_md)
         {
-            /* int parameter = 4;
-             string[] name = new string[parameter];
-             object[] values = new object[parameter];
-             name[0] = "@tentaikhoan";
-             name[1] = "@matkhau";
-             name[2] = "@quyen";
-             name[3] = "@hoten";
-             values[0] = tk_md.TENDANGNHAP;
-             values[1] = tk_md.MATKHAU;
-             values[2] = tk_md.QUYEN;
-             values[3] = tk_md.HOTEN;
-             return Execute("sp_themtaikhoan", name, values, parameter);*/
+            
             try
             {
                 TAIKHOAN t = new TAIKHOAN(tk_md.TENDANGNHAP, tk_md.MATKHAU, tk_md.QUYEN, tk_md.HOTEN);
@@ -48,12 +37,7 @@ namespace CafeMVVM.Dal
         }
         public bool sp_xoataikhoan(TaiKhoanModels tk_md)
         {
-            /*(int parameter = 1;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@tentaikhoan";
-            values[0] = tk_md.TENDANGNHAP;
-            return Execute("sp_xoataikhoan", name, values, parameter);*/
+            
             try
             {
                 TAIKHOAN t = new TAIKHOAN(tk_md.TENDANGNHAP, tk_md.MATKHAU, tk_md.QUYEN, tk_md.HOTEN);
@@ -68,12 +52,7 @@ namespace CafeMVVM.Dal
         }
         public bool sp_resetmatkhau(TaiKhoanModels tk_md)
         {
-            /*int parameter = 1;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@tentaikhoan";
-            values[0] = tk_md.TENDANGNHAP;
-            return Execute("sp_resetmatkhau", name, values, parameter);*/
+            
             try
             {
                 var temp=db.TAIKHOANs.Find(tk_md.TENDANGNHAP);
@@ -88,13 +67,7 @@ namespace CafeMVVM.Dal
         }
         public List<TaiKhoanModels> sp_kiemtradangnhap(TaiKhoanModels tk_md)
         {
-            /*int parameter = 1;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@tendangnhap";
-            values[0] = tk_md.TENDANGNHAP;
-            string json = JsonConvert.SerializeObject(LoadDataParameter("sp_kiemtradangnhap", name, values, parameter));
-            return JsonConvert.DeserializeObject<List<TaiKhoanModels>>(json);*/
+            
             var query=db.TAIKHOANs.Where(x => x.TENDANGNHAP == tk_md.TENDANGNHAP).ToList();
             List<TaiKhoanModels> list = new List<TaiKhoanModels>();
             foreach(var i in query)

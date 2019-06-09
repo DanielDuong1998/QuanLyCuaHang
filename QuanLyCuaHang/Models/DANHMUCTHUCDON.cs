@@ -19,7 +19,12 @@ namespace QuanLyCuaHang.Models
         {
             this.THUCDONs = new HashSet<THUCDON>();
         }
-    
+
+        public DANHMUCTHUCDON(string tendanhmuc)
+        {
+            TENDM = tendanhmuc;
+        }
+
         public int MADM { get; set; }
         public string TENDM { get; set; }
     
