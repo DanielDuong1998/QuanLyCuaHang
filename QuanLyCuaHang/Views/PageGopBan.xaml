@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-     
+      xmlns:local="clr-namespace:QuanLyCuaHang.ViewModels"
       mc:Ignorable="d"  x:Name="Wgopban"
      Height="130" Width="500" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize"
       Title="PageGopBan"
@@ -15,7 +15,9 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}">
-   
+    <Window.DataContext>
+        <local:KhuVucBanViewModels></local:KhuVucBanViewModels>
+    </Window.DataContext>
     <Grid Background="#b8b894">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

@@ -13,6 +13,18 @@ namespace QuanLyCuaHang.Models
         private string _QUYEN;
         private string _HOTEN;
 
+        public TaiKhoanModels()
+        {
+        }
+
+        public TaiKhoanModels(string tENDANGNHAP, string mATKHAU, string qUYEN, string hOTEN)
+        {
+            _TENDANGNHAP = tENDANGNHAP;
+            _MATKHAU = mATKHAU;
+            _QUYEN = qUYEN;
+            _HOTEN = hOTEN;
+        }
+
         public string TENDANGNHAP
         {
             get

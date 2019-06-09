@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-     
+      xmlns:local="clr-namespace:QuanLyCuaHang.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="400" d:DesignWidth="600"     
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -14,9 +14,11 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}">
-    
-       
-   
+
+    <UserControl.DataContext>
+        <local:BanViewModels></local:BanViewModels>
+    </UserControl.DataContext>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

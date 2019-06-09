@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:QuanLyCuaHang.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="500" WindowStartupLocation="CenterScreen" WindowStyle="None"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" ResizeMode="NoResize"
@@ -24,7 +25,9 @@
             </EventTrigger.Actions>
         </EventTrigger>
     </Window.Triggers>
-    
+    <Window.DataContext>
+        <local:KhuVucBanViewModels></local:KhuVucBanViewModels>
+    </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -32,7 +35,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <materialDesign:ColorZone Mode="Accent">
-            <Label Height="20"></Label>
+            <Label Height="20" ></Label>
         </materialDesign:ColorZone>
         <DataGrid Grid.Row="1"  AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding DanhSachBanTrong,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Margin="5">
             <DataGrid.Resources>

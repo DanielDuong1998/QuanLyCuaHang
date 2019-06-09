@@ -11,7 +11,7 @@ namespace QuanLyCuaHang.Dal
     public class HoaDonDal
     {
         WPF_DatabaseEntities db = new WPF_DatabaseEntities();
-        public List<HOADON> sp_loaddanhsachthucdoncuaban(int maban, int mahoadon)
+        public List<HoaDonModels> sp_loaddanhsachthucdoncuaban(int maban, int mahoadon)
         {
             //int parameter = 2;
             //string[] name = new string[parameter];
@@ -22,85 +22,111 @@ namespace QuanLyCuaHang.Dal
             //values[1]=mahoadon;
             //string json = JsonConvert.SerializeObject(LoadDataParameter("sp_loaddanhsachthucdoncuaban", name, values, parameter));
             //return JsonConvert.DeserializeObject<List<HoaDonModels>>(json);
-            List<HOADON> list = new List<HOADON>();
-            list = db.HOADONs.Where(x => x.MABAN == maban && x.IDHOADON == mahoadon).ToList();
+            List<HoaDonModels> list = new List<HoaDonModels>();
+
+
+            var query = from hd in db.HOADONs
+                        join cthd in db.CTHDs on hd.IDHOADON equals cthd.IDHOADON
+                        join td in db.THUCDONs on cthd.MATHUCDON equals td.MATHUCDON
+                        where hd.IDHOADON == mahoadon && hd.MABAN == maban
+                        select new { td.TENTHUCDON, DONGIA = (double)td.DONGIA * ((100 - (double)cthd.GIAMGIA)) / 100, cthd.SOLUONG,td.MATHUCDON,cthd.GIAMGIA,GiaMD=td.DONGIA,TTien= (td.DONGIA * ((100 - (double)cthd.GIAMGIA) / 100)) * cthd.SOLUONG };
+
+            foreach (var i in query)
+            {
+                HoaDonModels h = new HoaDonModels(i.TENTHUCDON,i.DONGIA,i.SOLUONG,i.MATHUCDON,i.GIAMGIA,i.GiaMD,i.TTien);
+                list.Add(h);
+            }
             return list;
         }
-        public List<HOADON> sp_layidhoadontheo_khuvucban(int maban, int makhuvuc)
+
+        
+
+        public List<HoaDonModels> sp_layidhoadontheo_khuvucban(int maban, int makhuvuc)
         {
-            /*int parameter = 2;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@maban";
-            name[1] = "@makhuvuc";
-            values[0] = maban;
-            values[1] = makhuvuc;
-            string json = JsonConvert.SerializeObject(LoadDataParameter("sp_layidhoadontheo_khuvucban", name, values, parameter));
-            
-            return JsonConvert.DeserializeObject<List<HoaDonModels>>(json);*/
+         
             var query = from hoadon in db.HOADONs
                         join ban in db.BANs on hoadon.MABAN equals ban.MABAN
-                        where hoadon.MABAN == maban && ban.MAKHUVUC == makhuvuc
-                        select hoadon;
-            List<HOADON> list = new List<HOADON>();
-            //list = db.HOADONs.Where(x => x.MABAN == maban).Join();
-            list = query.ToList();
+                        where hoadon.MABAN == maban && ban.MAKHUVUC == makhuvuc && hoadon.TRANGTHAIHOADON==0
+                        select hoadon.IDHOADON;
+            List<HoaDonModels> list = new List<HoaDonModels>();
+            foreach(var i in query)
+            {
+                HoaDonModels t = new HoaDonModels(i);
+                list.Add(t);
+            }
+           
+
             return list;
         }
         public bool sp_themhoadon(int maban)
         {
-            /* int parameter = 2;
-             string[] name = new string[parameter];
-             object[] values = new object[parameter];
-             name[0] = "@ngaylap";
-             name[1] = "@maban";       
-             values[0] = ngaylap;
-             values[1] = maban;        
-             return Execute("sp_themhoadon", name, values, parameter);*/
-            var ngaylap = DateTime.Now;
-            HOADON hd = new HOADON(ngaylap, maban);
-            db.HOADONs.Add(hd);
-            db.SaveChanges();
+
+          
+            try
+            {
+                var ngaylap = DateTime.Now.Date;
+                var gioLap = DateTime.Now.ToString("HH:mm:ss");
+                HOADON hd = new HOADON(ngaylap, maban, gioLap);
+                db.HOADONs.Add(hd);
+                var ban = db.BANs.Find(maban);
+                ban.TRANGTHAI = "Có người";
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return true;
         }
         public bool sp_themcthdban(int idhoadon, int mathucdon, int soluong, int giamgia)
         {
-            /* int parameter = 4;
-             string[] name = new string[parameter];
-             object[] values = new object[parameter];
-             name[0]= "@idhoadon";
-             name[1]= "@mathucdon";
-             name[2]= "@soluong";
-             name[3] = "@giamgia";
-             values[0]= idhoadon;
-             values[1]= mathucdon;
-             values[2]= soluong;
-             values[3] = giamgia;
-             return Execute("sp_themcthdban", name, values, parameter);*/
-            CTHD ct = new CTHD(idhoadon, mathucdon, soluong, giamgia);
-            db.CTHDs.Add(ct);
-            db.SaveChanges();
+           
+            try
+            {
+                var query = db.CTHDs.Where(x => x.IDHOADON == idhoadon && x.MATHUCDON == mathucdon && x.GIAMGIA == giamgia).Select(x => x.MATHUCDON);
+                if (query != null)
+                {
+                    var soluongcu = db.CTHDs.Where(x => x.IDHOADON == idhoadon && x.MATHUCDON == mathucdon && x.GIAMGIA == giamgia).Select(x => x.SOLUONG);
+                    var tongsoluong = Convert.ToInt32(soluongcu) + soluong;
+                    var soluongUp = db.CTHDs.Where(x => x.IDHOADON == idhoadon && x.MATHUCDON == mathucdon && x.GIAMGIA == giamgia).FirstOrDefault();
+                    soluongUp.SOLUONG = tongsoluong;
+                    db.SaveChanges();
+                }
+                else
+                {
+                    CTHD cthd = new CTHD(idhoadon, mathucdon, soluong, giamgia);
+                    db.CTHDs.Add(cthd);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return true;
         }
         public bool sp_thanhtoanban(int maban, int mahoadon, double tongtien, string idnhanvien)
         {
-            /*int parameter = 4;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0]= "@maban";
-            name[1]= "@mahoadon";
-            name[2]= "@tongtien";
-            name[3] = "@idnhanvien";
-            values[0]=maban;
-            values[1]=mahoadon;
-            values[2]= tongtien;
-            values[3] = idnhanvien;
-            return Execute("sp_thanhtoanban", name,values,parameter);*/
-            var hd = db.HOADONs.Where(x => x.MABAN == maban).FirstOrDefault();
-            hd.IDHOADON = mahoadon;
-            hd.TONGTIEN = tongtien;
-            hd.IDNHANVIEN = idnhanvien;
-            db.SaveChanges();
+
+            //begin
+            //update HOADON set TRANGTHAIHOADON = 1,TONGTIEN = @tongtien,IDNHANVIEN = @idnhanvien,INHOADON = 2 where IDHOADON = @mahoadon and MABAN = @maban
+            //update BAN set TRANGTHAI = N'Trống' where MABAN = @maban
+            //end
+
+
+            try
+            {
+                var hd = db.HOADONs.Where(x => x.MABAN == maban && x.MABAN == maban).FirstOrDefault();
+                hd.TRANGTHAIHOADON = 1;
+                hd.TONGTIEN = tongtien;
+                hd.IDNHANVIEN = idnhanvien;
+                hd.INHOADON = 2;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
             return true;
         }
         //public DataTable sp_loaddanhsachthucdoncuaban_rpt(int maban, int mahoadon, string giora)

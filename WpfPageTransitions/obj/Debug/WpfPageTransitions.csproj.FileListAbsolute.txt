@@ -66,3 +66,20 @@ D:\HocTapHuy\Downloads\Phân tích thiết kế\Đồ án cuối kì\GITHUB\Quan
 D:\HocTapHuy\Downloads\Phân tích thiết kế\Đồ án cuối kì\GITHUB\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.csproj.CopyComplete
 D:\HocTapHuy\Downloads\Phân tích thiết kế\Đồ án cuối kì\GITHUB\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.exe
 D:\HocTapHuy\Downloads\Phân tích thiết kế\Đồ án cuối kì\GITHUB\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.pdb
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\bin\Debug\WpfPageTransitions.exe.config
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\bin\Debug\WpfPageTransitions.exe
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\bin\Debug\WpfPageTransitions.pdb
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.csprojAssemblyReference.cache
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\PageTransition.g.cs
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\App.g.cs
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions_MarkupCompile.cache
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions_MarkupCompile.lref
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\PageTransition.baml
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.g.resources
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.Properties.Resources.resources
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.csproj.GenerateResource.cache
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.csproj.CoreCompileInputs.cache
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.csproj.CopyComplete
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.exe
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\WpfPageTransitions\obj\Debug\WpfPageTransitions.pdb

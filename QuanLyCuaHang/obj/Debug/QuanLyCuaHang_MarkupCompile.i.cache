@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\HocTapHuy\Downloads\Phân tích thiết kế\Đồ án cuối kì\GITHUB\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\QuanLyCuaHang\obj\Debug\
 QuanLyCuaHang
 none
 false
 DEBUG;TRACE
-D:\HocTapHuy\Downloads\Phân tích thiết kế\Đồ án cuối kì\GITHUB\QuanLyCuaHang\QuanLyCuaHang\App.xaml
+C:\Users\duong\OneDrive\Desktop\pttkDoAn\doAn\QuanLyCuaHang\QuanLyCuaHang\App.xaml
 17-1109512343
 21511366351
-572073912380
-23-2124288631
+56426645344
+23214297899
 MainWindow.xaml;Views\CuaHang.xaml;Views\KhuVucBanTrong.xaml;Views\PageBan.xaml;Views\PageChiTietHoaDon.xaml;Views\PageChuyenBan.xaml;Views\PageDangNhap.xaml;Views\PageGiamGia.xaml;Views\PageGopBan.xaml;Views\PageHome.xaml;Views\PageKhuVuc.xaml;Views\PageNen.xaml;Views\PageQuanLyTaiKhoan.xaml;Views\PageSuaBan.xaml;Views\PageThongKe.xaml;Views\PageThucDon.xaml;Views\ThongBao.xaml;
 
-True
+False
 

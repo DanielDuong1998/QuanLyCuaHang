@@ -19,7 +19,14 @@ namespace QuanLyCuaHang.Models
         {
             this.CTHDs = new HashSet<CTHD>();
         }
-    
+
+        public THUCDON(string tenthucdon, double dongia, int madanhmuc)
+        {
+            TENTHUCDON = tenthucdon;
+            DONGIA = dongia;
+            MADM = madanhmuc;
+        }
+
         public int MATHUCDON { get; set; }
         public string TENTHUCDON { get; set; }
         public Nullable<double> DONGIA { get; set; }

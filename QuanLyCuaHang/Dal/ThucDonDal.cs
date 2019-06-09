@@ -1,5 +1,5 @@
 ﻿using QuanLyCuaHang.Models;
-using Newtonsoft.Json;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,93 +8,132 @@ using System.Threading.Tasks;
 
 namespace QuanLyCuaHang.Dal
 {
-    public class ThucDonDal : XuLySqlServer
+    public class ThucDonDal 
     {
+        WPF_DatabaseEntities db = new WPF_DatabaseEntities();
         public List<ThucDonModels> sp_danhmucloadthucdon()
         {
-            string json = JsonConvert.SerializeObject(LoadData("sp_danhmucloadthucdon"));
-            return JsonConvert.DeserializeObject<List<ThucDonModels>>(json);
+            List<ThucDonModels> list = new List<ThucDonModels>();
+            foreach(var i in db.DANHMUCTHUCDONs.ToList())
+            {
+                ThucDonModels t = new ThucDonModels(i.MADM,i.TENDM);
+                list.Add(t);
+            }
+            return list;
         }
         public List<ThucDonModels> sp_loadthucdon(int madm)
         {
-            int parameter = 1;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@madm";
-            values[0] = madm;
-            string json = JsonConvert.SerializeObject(LoadDataParameter("sp_loadthucdon", name, values, parameter));
-            return JsonConvert.DeserializeObject<List<ThucDonModels>>(json);
+           
+                var query = from td in db.THUCDONs
+                            where td.MADM == madm
+                            select new { td.MATHUCDON, td.TENTHUCDON,td.DONGIA,td.GIAMGIA };
+            List<ThucDonModels> list = new List<ThucDonModels>();
+            foreach (var i in query)
+            {
+                ThucDonModels t = new ThucDonModels(i.MATHUCDON, i.TENTHUCDON,i.DONGIA,i.GIAMGIA);
+                list.Add(t);
+            }
+            return list;
         }
         public bool sp_themdanhmucthucdon(string tendanhmuc)
         {
-            int parameter = 1;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@tendanhmuc";
-            values[0] = tendanhmuc;
-            return Execute("sp_themdanhmucthucdon", name, values, parameter);
+            try
+            {
+                DANHMUCTHUCDON t = new DANHMUCTHUCDON(tendanhmuc);
+                db.DANHMUCTHUCDONs.Add(t);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
         public bool sp_xoadanhmucthucdon(int madanhmuc)
         {
-            int parameter = 1;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@iddanhmuc";
-            values[0] = madanhmuc;
-            return Execute("sp_xoadanhmucthucdon", name, values, parameter);
+            try
+            {
+
+                var dm = db.DANHMUCTHUCDONs.Find(madanhmuc);
+                db.DANHMUCTHUCDONs.Remove(dm);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+
+            }
+            return true;
         }
         public bool sp_themthucdon(string tenthucdon, double dongia, int madanhmuc)
         {
-            int parameter = 3;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@tenthucdon";
-            name[1] = "@dongia";
-            name[2] = "@iddm";
-            values[0] = tenthucdon;
-            values[1] = dongia;
-            values[2] = madanhmuc;
-            return Execute("sp_themthucdon", name, values, parameter);
+            try
+            {
+                THUCDON t = new THUCDON(tenthucdon, dongia, madanhmuc);
+                db.THUCDONs.Add(t);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
         public bool sp_xoathucdon(int mathucdon)
         {
-            int parameter = 1;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@mathucdon";
-            values[0] = mathucdon;
-            return Execute("sp_xoathucdon", name, values, parameter);
+            try
+            {
+                var td = db.THUCDONs.Find(mathucdon);
+                db.THUCDONs.Remove(td);
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
         public bool sp_themgiamgia(int mathucdon, int giamgia)
         {
-            int parameter = 2;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@mathucdon";
-            name[1] = "@giamgia";
-            values[0] = mathucdon;
-            values[1] = giamgia;
-            return Execute("sp_themgiamgia", name, values, parameter);
+            try
+            {
+                var gg = db.THUCDONs.Find(mathucdon);
+                gg.GIAMGIA = giamgia;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
         public bool sp_xoagiamgia(int mathucdon)
         {
-            int parameter = 1;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@mathucdon";
-            values[0] = mathucdon;
-            return Execute("sp_xoagiamgia", name, values, parameter);
+            try
+            {
+                var gg = db.THUCDONs.Find(mathucdon);
+                gg.GIAMGIA = 0;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
         public bool sp_suagiathucdon(int mathucdon, double dongia)
         {
-            int parameter = 2;
-            string[] name = new string[parameter];
-            object[] values = new object[parameter];
-            name[0] = "@mathucdon";
-            name[1] = "@dongia";
-            values[0] = mathucdon;
-            values[1] = dongia;
-            return Execute("sp_suagiathucdon", name, values, parameter);
+            try
+            {
+                var gtd = db.THUCDONs.Find(mathucdon);
+                gtd.DONGIA = dongia;
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

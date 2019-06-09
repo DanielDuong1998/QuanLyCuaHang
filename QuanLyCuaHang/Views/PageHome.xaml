@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-     
+      xmlns:local="clr-namespace:QuanLyCuaHang.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="500" d:DesignWidth="1000"
       
@@ -15,10 +15,14 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}">
-    
-    
+
+    <UserControl.DataContext>
+        <local:KhuVucBanViewModels></local:KhuVucBanViewModels>
+    </UserControl.DataContext>
     <UserControl.Resources>
-        
+        <ResourceDictionary>
+            <local:ConvertMau x:Key="ConvertMau"></local:ConvertMau>
+        </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>

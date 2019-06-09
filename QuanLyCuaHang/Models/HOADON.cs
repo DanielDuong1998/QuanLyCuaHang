@@ -19,14 +19,14 @@ namespace QuanLyCuaHang.Models
         {
             this.CTHDs = new HashSet<CTHD>();
         }
-    public HOADON(DateTime date, int maban)
+    public HOADON(DateTime date, int maban,string time)
         {
             IDHOADON = 0;
             NGAYLAP = date;
             MABAN = maban;
             TRANGTHAIHOADON = 0;
             INHOADON = 0;
-            GIOLAP=DateTime.Now.ToString("HH:mm:ss");
+            GIOLAP=time;
         }
         public int IDHOADON { get; set; }
         public Nullable<System.DateTime> NGAYLAP { get; set; }

@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-     
+      xmlns:local="clr-namespace:QuanLyCuaHang.ViewModels"
       mc:Ignorable="d" 
       d:DesignHeight="80" d:DesignWidth="300"
       Title="PageSuaBan"
@@ -15,7 +15,9 @@
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
      FontFamily="{DynamicResource MaterialDesignFont}">
-   
+    <Page.DataContext>
+        <local:BanViewModels></local:BanViewModels>
+    </Page.DataContext>
     <Grid Background="#b8b894">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

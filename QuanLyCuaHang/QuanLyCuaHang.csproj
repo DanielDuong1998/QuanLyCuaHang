@@ -126,7 +126,6 @@
     </Compile>
     <Compile Include="Models\ThucDonModels.cs" />
     <Compile Include="ViewModels\BanViewModels.cs" />
-    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BienDungChung.cs" />
     <Compile Include="ViewModels\ConvertMau.cs" />
     <Compile Include="ViewModels\DanhMucViewModels.cs" />
@@ -296,6 +295,19 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\BtnDangXuat.png" />
+    <Resource Include="Image\ButtonExit.png" />
+    <Resource Include="Image\ButtonGiamGia.png" />
+    <Resource Include="Image\ButtonKhuVuc.png" />
+    <Resource Include="Image\ButtonPhucVu.png" />
+    <Resource Include="Image\ButtonTable.png" />
+    <Resource Include="Image\ButtonTaiKhoan.png" />
+    <Resource Include="Image\ButtonThongKe.png" />
+    <Resource Include="Image\ButtonThucDon.png" />
+    <Resource Include="Image\backGroundLogin.jpg" />
+    <Resource Include="Image\CanhBao.png" />
+    <Resource Include="Image\CauHoi.png" />
+    <Resource Include="Image\CheckTC.png" />
     <Content Include="Models\CuaHangSQL.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>CuaHangSQL.edmx</DependentUpon>

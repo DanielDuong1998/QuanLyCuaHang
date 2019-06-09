@@ -32,5 +32,9 @@ namespace QLCuaHang.Views
         {
             System.Windows.Application.Current.Shutdown();
         }
+
+        
+
+        
     }
 }

@@ -20,25 +20,27 @@ namespace QLCuaHang.Views
         public ThongBao(string noidung, string tieudehinh)
         {
             InitializeComponent();
-            string duongdan = System.AppDomain.CurrentDomain.BaseDirectory;
+           
+            var uri = new Uri("pack://application:,,,/Image/CheckTC.png");
+
             if (tieudehinh == "ThanhCong")
             {
                 btnYes.Visibility = Visibility.Collapsed;
                 btnNo.Visibility = Visibility.Collapsed;
-                duongdan = duongdan + "Image/" + "CheckTC.png";
+               
             }
             else if (tieudehinh == "CauHoi")
             {
                 btnOk.Visibility = Visibility.Collapsed;
-                duongdan = duongdan + "Image/" + "CauHoi.png";
+                uri = new Uri("pack://application:,,,/Image/CauHoi.png");
             }
             else if (tieudehinh == "CanhBao")
             {
                 btnYes.Visibility = Visibility.Collapsed;
                 btnNo.Visibility = Visibility.Collapsed;
-                duongdan = duongdan + "Image/" + "CanhBao.png";
+                uri = new Uri("pack://application:,,,/Image/CanhBao.png");
             }
-            hinhanh.Source = new BitmapImage(new Uri(duongdan));
+            hinhanh.Source = new BitmapImage(uri);
             lbNoidung.Content = noidung;
         }
         public ThongBao()

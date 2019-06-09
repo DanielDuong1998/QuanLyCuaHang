@@ -608,170 +608,170 @@ namespace QuanLyCuaHang.ViewModels
         
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         DispatcherTimer dispatcherTimer1 = new DispatcherTimer();
-        public KhuVucBanViewModels()
-        {
-            SelectedIndexOfBan = -1;
-            PhanTramGiamGia = 0;
-            KhuVuc = KhuVucDal.sp_loadkhuvuc();
-            DanhMucThucDon = ThucDonDal.sp_danhmucloadthucdon();
-            EnableGridDanhmuc = false;
-            ThanhToanComand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                thanhtoanhoadon();
-            });
-            XoaMon = new RelayCommand<object>((p) => true, (p) =>
-            {
-                if (IDHOADON == 0)
-                {
-                    ThongBao tb = new ThongBao("Hóa đơn trống", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else if (SelectMon == null)
-                {
-                    ThongBao tb = new ThongBao("Chọn món trên danh sách để xóa.", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    KhuVucDal.sp_xoachitiethoadon(IDHOADON, SelectMon.MATHUCDON, SelectMon.GIAMGIA);
-                    DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
-                    if (DanhSachThucDonBan.Count == 0)
-                    {
-                        KhuVucDal.sp_xoahoadonkhihetmon(IDHOADON, SelectedItemBan.MABAN);
-                        int makhuvuc = SelectedItem.MAKHUVUC;
-                        BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);
-                        DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
-                        SelectedIndexOfBan = index;
-                    }
-                }
-            });
-            ChuyenBanCommand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                if (SelectedItem == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn khu vực", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    BanTrong = KhuVucDal.sp_loadbantrangthaitrong(SelectedItem.MAKHUVUC);
-                    BanCoNguoi = KhuVucDal.sp_loadbantrangthaiconguoi(SelectedItem.MAKHUVUC);
-                    WindowService.ShowFormChuyenBan(false, this, (Window)p);
-                }
-            });
-            XacNhanChuyenBanIcommand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                if (SelectedBanCoNguoi == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn bàn cần chuyển", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else if (SelectedBanTrong == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn bàn trống", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    KhuVucDal.sp_chuyenbantable(SelectedBanTrong.MABAN, SelectedBanCoNguoi.MABAN);
-                    BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(SelectedItem.MAKHUVUC);
-                    WindowService.ShowFormChuyenBan(true, this, (Window)p);
-                }
-            });
-            GopBan = new RelayCommand<object>((p) => true, (p) =>
-            {
-                if (SelectedItem == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn khu vực", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    BanMuonGop = KhuVucDal.sp_loadbantrangthaiconguoi(SelectedItem.MAKHUVUC);
-                    WindowService.ShowFormGopBan(false, this, (Window)p);
-                }
-            });
-            XacNhanGopBan = new RelayCommand<object>((p) => true, (p) =>
-            {
-                if (SelectedBanMuonGop == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn bạn gộp", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else if (SelectedItem == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn khu vực", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else if (SelectedBanDcGop == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn bạn muốn gộp", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    DanhSachCTHDBanMuonGop = KhuVucDal.sp_loadcthdbangop(SelectedBanMuonGop.MABAN);
-                    if (DanhSachCTHDBanMuonGop != null)
-                    {
-                        for (int i = 0; i < DanhSachCTHDBanMuonGop.Count; i++)
-                        {
-                            HoaDonDal.sp_themcthdban(SelectedBanDcGop.IDHOADON, DanhSachCTHDBanMuonGop[i].MATHUCDON, DanhSachCTHDBanMuonGop[i].SOLUONG, DanhSachCTHDBanMuonGop[i].GIAMGIA);
-                        }
-                        KhuVucDal.sp_xoahoadongopban(SelectedBanMuonGop.MABAN);
-                        BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(SelectedItem.MAKHUVUC);
-                        WindowService.ShowFormGopBan(true, this, (Window)p);
-                    }
-                }
-            });
-            ThemGiamGia = new RelayCommand<object>((p) => true, ((p) =>
-            {
-                if (ChonThucDonBanGiamGia == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn món cần giảm", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else if (PhanTramGiamGia < 0)
-                {
-                    ThongBao tb = new ThongBao("Giảm giá không được âm", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else if (PhanTramGiamGia > 100)
-                {
-                    ThongBao tb = new ThongBao("Giảm giá không lớn hơn 100%", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    ThucDonDal.sp_themgiamgia(ChonThucDonBanGiamGia.MATHUCDON, PhanTramGiamGia);
-                    ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
-                }
-            }));
-            GoGiamGia = new RelayCommand<object>((p) => true, ((p) =>
-            {
-                if (ChonThucDonBanGiamGia == null)
-                {
-                    ThongBao tb = new ThongBao("Chưa chọn món gỡ bỏ giảm giá", "CanhBao");
-                    tb.ShowDialog();
-                }
-                else
-                {
-                    ThucDonDal.sp_xoagiamgia(ChonThucDonBanGiamGia.MATHUCDON);
-                    ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
-                }
-            }));
-            TimBanTrongCommand = new RelayCommand<object>((p) => true, (p) =>
-            {
-                DanhSachBanTrong = KhuVucDal.sp_danhsachkhuvuccobantrong();
-                KhuVucBanTrong khuvucbantrong = new KhuVucBanTrong { DataContext = this };
-                khuvucbantrong.ShowDialog();
-            });
-            Thread TrangThai = new Thread(TimerTrangThai);
-            TrangThai.IsBackground = false;
-            TrangThai.Start();
-            Thread ThreadInHoaDon = new Thread(TimerInHoaDon);
-            ThreadInHoaDon.IsBackground = false;
-            ThreadInHoaDon.Start();
-        }
+        //public KhuVucBanViewModels()
+        //{
+        //    SelectedIndexOfBan = -1;
+        //    PhanTramGiamGia = 0;
+        //    KhuVuc = KhuVucDal.sp_loadkhuvuc();
+        //    DanhMucThucDon = ThucDonDal.sp_danhmucloadthucdon();
+        //    EnableGridDanhmuc = false;
+        //    ThanhToanComand = new RelayCommand<object>((p) => true, (p) =>
+        //    {
+        //        thanhtoanhoadon();
+        //    });
+        //    XoaMon = new RelayCommand<object>((p) => true, (p) =>
+        //    {
+        //        if (IDHOADON == 0)
+        //        {
+        //            ThongBao tb = new ThongBao("Hóa đơn trống", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else if (SelectMon == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chọn món trên danh sách để xóa.", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else
+        //        {
+        //            KhuVucDal.sp_xoachitiethoadon(IDHOADON, SelectMon.MATHUCDON, SelectMon.GIAMGIA);
+        //            DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
+        //            if (DanhSachThucDonBan.Count == 0)
+        //            {
+        //                KhuVucDal.sp_xoahoadonkhihetmon(IDHOADON, SelectedItemBan.MABAN);
+        //                int makhuvuc = SelectedItem.MAKHUVUC;
+        //                BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(makhuvuc);
+        //                DanhSachThucDonBan = HoaDonDal.sp_loaddanhsachthucdoncuaban(MABANKHISELECT, IDHOADON);
+        //                SelectedIndexOfBan = index;
+        //            }
+        //        }
+        //    });
+        //    ChuyenBanCommand = new RelayCommand<object>((p) => true, (p) =>
+        //    {
+        //        if (SelectedItem == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn khu vực", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else
+        //        {
+        //            BanTrong = KhuVucDal.sp_loadbantrangthaitrong(SelectedItem.MAKHUVUC);
+        //            BanCoNguoi = KhuVucDal.sp_loadbantrangthaiconguoi(SelectedItem.MAKHUVUC);
+        //            WindowService.ShowFormChuyenBan(false, this, (Window)p);
+        //        }
+        //    });
+        //    XacNhanChuyenBanIcommand = new RelayCommand<object>((p) => true, (p) =>
+        //    {
+        //        if (SelectedBanCoNguoi == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn bàn cần chuyển", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else if (SelectedBanTrong == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn bàn trống", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else
+        //        {
+        //            KhuVucDal.sp_chuyenbantable(SelectedBanTrong.MABAN, SelectedBanCoNguoi.MABAN);
+        //            BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(SelectedItem.MAKHUVUC);
+        //            WindowService.ShowFormChuyenBan(true, this, (Window)p);
+        //        }
+        //    });
+        //    GopBan = new RelayCommand<object>((p) => true, (p) =>
+        //    {
+        //        if (SelectedItem == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn khu vực", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else
+        //        {
+        //            BanMuonGop = KhuVucDal.sp_loadbantrangthaiconguoi(SelectedItem.MAKHUVUC);
+        //            WindowService.ShowFormGopBan(false, this, (Window)p);
+        //        }
+        //    });
+        //    XacNhanGopBan = new RelayCommand<object>((p) => true, (p) =>
+        //    {
+        //        if (SelectedBanMuonGop == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn bạn gộp", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else if (SelectedItem == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn khu vực", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else if (SelectedBanDcGop == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn bạn muốn gộp", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else
+        //        {
+        //            DanhSachCTHDBanMuonGop = KhuVucDal.sp_loadcthdbangop(SelectedBanMuonGop.MABAN);
+        //            if (DanhSachCTHDBanMuonGop != null)
+        //            {
+        //                for (int i = 0; i < DanhSachCTHDBanMuonGop.Count; i++)
+        //                {
+        //                    HoaDonDal.sp_themcthdban(SelectedBanDcGop.IDHOADON, DanhSachCTHDBanMuonGop[i].MATHUCDON, DanhSachCTHDBanMuonGop[i].SOLUONG, DanhSachCTHDBanMuonGop[i].GIAMGIA);
+        //                }
+        //                KhuVucDal.sp_xoahoadongopban(SelectedBanMuonGop.MABAN);
+        //                BanKhuVuc = KhuVucDal.sp_loadbantheokhuvuc(SelectedItem.MAKHUVUC);
+        //                WindowService.ShowFormGopBan(true, this, (Window)p);
+        //            }
+        //        }
+        //    });
+        //    ThemGiamGia = new RelayCommand<object>((p) => true, ((p) =>
+        //    {
+        //        if (ChonThucDonBanGiamGia == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn món cần giảm", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else if (PhanTramGiamGia < 0)
+        //        {
+        //            ThongBao tb = new ThongBao("Giảm giá không được âm", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else if (PhanTramGiamGia > 100)
+        //        {
+        //            ThongBao tb = new ThongBao("Giảm giá không lớn hơn 100%", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else
+        //        {
+        //            ThucDonDal.sp_themgiamgia(ChonThucDonBanGiamGia.MATHUCDON, PhanTramGiamGia);
+        //            ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
+        //        }
+        //    }));
+        //    GoGiamGia = new RelayCommand<object>((p) => true, ((p) =>
+        //    {
+        //        if (ChonThucDonBanGiamGia == null)
+        //        {
+        //            ThongBao tb = new ThongBao("Chưa chọn món gỡ bỏ giảm giá", "CanhBao");
+        //            tb.ShowDialog();
+        //        }
+        //        else
+        //        {
+        //            ThucDonDal.sp_xoagiamgia(ChonThucDonBanGiamGia.MATHUCDON);
+        //            ThucDon = ThucDonDal.sp_loadthucdon(SelectedItemDMThucDonGiamGia.MADM);
+        //        }
+        //    }));
+        //    TimBanTrongCommand = new RelayCommand<object>((p) => true, (p) =>
+        //    {
+        //        DanhSachBanTrong = KhuVucDal.sp_danhsachkhuvuccobantrong();
+        //        KhuVucBanTrong khuvucbantrong = new KhuVucBanTrong { DataContext = this };
+        //        khuvucbantrong.ShowDialog();
+        //    });
+        //    Thread TrangThai = new Thread(TimerTrangThai);
+        //    TrangThai.IsBackground = false;
+        //    TrangThai.Start();
+        //    Thread ThreadInHoaDon = new Thread(TimerInHoaDon);
+        //    ThreadInHoaDon.IsBackground = false;
+        //    ThreadInHoaDon.Start();
+        //}
         private void TimerTrangThai()
         {
           //  dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
