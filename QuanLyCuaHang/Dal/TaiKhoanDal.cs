@@ -13,7 +13,11 @@ namespace QuanLyCuaHang.Dal
             /*string json = JsonConvert.SerializeObject(LoadData("sp_loadtaikhoan"));
             return JsonConvert.DeserializeObject<List<TaiKhoanModels>>(json);*/
             List<TaiKhoanModels> list = new List<TaiKhoanModels>();
+<<<<<<< HEAD
             foreach(var i in db.TAIKHOANs)
+=======
+            foreach(var i in db.TAIKHOANs.ToList())
+>>>>>>> 7c18fcd812eab7d91f130ce4abb572ac54a034c4
             {
                 TaiKhoanModels t = new TaiKhoanModels(i.TENDANGNHAP, i.MATKHAU, i.QUYEN, i.HOTEN);
                 list.Add(t);
