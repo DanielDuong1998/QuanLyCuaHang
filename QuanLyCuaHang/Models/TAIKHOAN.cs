@@ -19,7 +19,15 @@ namespace QuanLyCuaHang.Models
         {
             this.HOADONs = new HashSet<HOADON>();
         }
-    
+
+        public TAIKHOAN(string tENDANGNHAP, string mATKHAU, string qUYEN, string hOTEN)
+        {
+            TENDANGNHAP = tENDANGNHAP;
+            MATKHAU = mATKHAU;
+            QUYEN = qUYEN;
+            HOTEN = hOTEN;
+        }
+
         public string TENDANGNHAP { get; set; }
         public string HOTEN { get; set; }
         public string MATKHAU { get; set; }

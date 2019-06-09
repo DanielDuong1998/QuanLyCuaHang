@@ -1,4 +1,5 @@
-﻿using QuanLyCuaHang.Models;
+﻿using QuanLyCuaHang.Dal;
+using QuanLyCuaHang.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,9 +12,9 @@ namespace QuanLyCuaHang.ViewModels
 {
     public class KhuVucBanViewModels:INotifyPropertyChanged
     {
-        //KhuVucBanDal KhuVucDal = new KhuVucBanDal();
-        //ThucDonDal ThucDonDal = new ThucDonDal();
-        //HoaDonDal HoaDonDal = new HoaDonDal(); 
+        KhuVucBanDal KhuVucDal = new KhuVucBanDal();
+        ThucDonDal ThucDonDal = new ThucDonDal();
+        HoaDonDal HoaDonDal = new HoaDonDal(); 
         private KhuVucBanModels _SelectedItem;
         private ThucDonModels _SelectedItemDMThucDon;
         private ThucDonModels _SelectedItemDMThucDonGiamGia;
